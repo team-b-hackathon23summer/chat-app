@@ -18,3 +18,8 @@ shellescape==3.8.1
 SQLAlchemy==1.4.41
 urllib3==1.26.12
 Werkzeug==2.2.2
+Flask-SocketIO==5.1.1
+python-socketio==5.4.0
+python-engineio==4.2.1
+eventlet==0.33.0
+dnspython==2.0.0

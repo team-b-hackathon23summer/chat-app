@@ -5,11 +5,15 @@ from datetime import timedelta
 import hashlib
 import uuid
 import re
-
+import time
+from datetime import datetime
+from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
 app.secret_key = uuid.uuid4().hex
 app.permanent_session_lifetime = timedelta(days=30)
+socketio = SocketIO(app, cors_allowed_origins='*')
+
 
 
 # サインアップページの表示
@@ -61,7 +65,6 @@ def login():
 def userLogin():
     email = request.form.get('email')
     password = request.form.get('password')
-
     if email =='' or password == '':
         flash('空のフォームがあるようです')
     else:
@@ -94,6 +97,7 @@ def index():
     else:
         channels = dbConnect.getChannelAll()
         channels.reverse()
+    print("hello")
     return render_template('index.html', channels=channels, uid=uid)
 
 
@@ -160,20 +164,37 @@ def detail(cid):
     return render_template('detail.html', messages=messages, channel=channel, uid=uid)
 
 
-# メッセージの投稿
-@app.route('/message', methods=['POST'])
-def add_message():
-    uid = session.get("uid")
+#メッセージの投稿
+# @app.route('/message', methods=['POST'])
+# def add_message():
+#     uid = session.get("uid")
+#     if uid is None:
+#         return redirect('/login')
+
+#     message = request.form.get('message')
+#     cid = request.form.get('cid')
+
+#     if message:
+#         dbConnect.createMessage(uid, cid, message)
+
+#     return redirect('/detail/{cid}'.format(cid = cid))
+
+
+@socketio.on('send_message')
+def handle_send_message(data):
+    uid = data['uid']  # ユーザIDを受け取る
     if uid is None:
         return redirect('/login')
 
-    message = request.form.get('message')
-    cid = request.form.get('cid')
+    message = data['message']
+    cid = data['cid']
 
     if message:
+        # メッセージをデータベースに保存
         dbConnect.createMessage(uid, cid, message)
 
-    return redirect('/detail/{cid}'.format(cid = cid))
+        # 全てのクライアントに新しいメッセージを送信
+        socketio.emit('message', {'message': message, 'uid': uid, 'cid': cid}, broadcast=True)
 
 
 # メッセージの削除
@@ -202,4 +223,4 @@ def show_error500(error):
     return render_template('error/500.html'),500
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=False)
+    socketio.run(app, host="0.0.0.0", debug=True)
