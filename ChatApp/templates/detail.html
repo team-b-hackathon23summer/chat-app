@@ -46,10 +46,10 @@
     <div class="typing-box-wrapper">
       <form
         class="typing-box"
-        action="/message"
         method="POST"
         name="newMessageForm"
-      >
+        >
+        <!-- action="/message" -->
         <textarea name="message" id="message" autofocus></textarea>
         <input type="hidden" name="cid" value="{{ channel.id }}" />
         <div id="message-send-tooltip">

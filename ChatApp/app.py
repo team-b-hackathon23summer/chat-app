@@ -164,7 +164,7 @@ def detail(cid):
     return render_template('detail.html', messages=messages, channel=channel, uid=uid)
 
 
-#メッセージの投稿
+# メッセージの投稿
 # @app.route('/message', methods=['POST'])
 # def add_message():
 #     uid = session.get("uid")
@@ -181,8 +181,8 @@ def detail(cid):
 
 
 @socketio.on('send_message')
-def handle_send_message(data):
-    uid = data['uid']  # ユーザIDを受け取る
+def send_message(data):
+    uid = data['uid']
     if uid is None:
         return redirect('/login')
 
@@ -190,7 +190,6 @@ def handle_send_message(data):
     cid = data['cid']
 
     if message:
-        # メッセージをデータベースに保存
         dbConnect.createMessage(uid, cid, message)
 
         # 全てのクライアントに新しいメッセージを送信
