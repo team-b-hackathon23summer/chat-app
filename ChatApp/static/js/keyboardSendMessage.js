@@ -36,7 +36,7 @@ function keydownEvent(e) {
       // updateモーダルが存在していないページ or updateモーダルはあるが表示されていない時
       if (!updateChannelModal || updateChannelModalStyle === "none") {
         if (newMessageBody.value) {
-          e.preventDefault();  // デフォルトの送信を防ぐ
+          e.preventDefault();  // デフォルトの/message送信を防ぐ
 
           // フォームからメッセージとチャンネルIDを取得
           let message = newMessageBody.value;
