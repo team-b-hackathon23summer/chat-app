@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, session, flash, abort
+from flask import Flask, request, redirect, render_template, session, flash
 from models import dbConnect
 from util.user import User
 from datetime import timedelta
@@ -8,6 +8,7 @@ import re
 import time
 from datetime import datetime
 from flask_socketio import SocketIO, emit
+import eventlet.wsgi
 
 app = Flask(__name__)
 app.secret_key = uuid.uuid4().hex
@@ -223,3 +224,6 @@ def show_error500(error):
 
 if __name__ == '__main__':
     socketio.run(app, host="0.0.0.0", debug=True)
+
+    server_type = type(socketio.server).__module__
+    print(f"The server type is: {server_type}")
