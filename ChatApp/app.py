@@ -181,7 +181,7 @@ def detail(cid):
 
 
 @socketio.on('send_message')
-def send_message(data):
+def handle_message(data):
     uid = data['uid']
     if uid is None:
         return redirect('/login')

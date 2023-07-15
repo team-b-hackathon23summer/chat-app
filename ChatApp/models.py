@@ -1,3 +1,4 @@
+from flask import Flask, abort
 import pymysql
 from util.DB import DB
 
@@ -185,6 +186,62 @@ class dbConnect:
             cur = conn.cursor()
             sql = "DELETE FROM messages WHERE id=%s;"
             cur.execute(sql, (message_id))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            abort(500)
+        finally:
+            cur.close()
+
+
+    def getAlarm(uid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = 'SELECT FROM alarms WHERE uid=%s'
+            cur.execute(sql, (uid))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            abort(500)
+        finally:
+            cur.close()
+
+
+    def setAlarm(uid, alarm):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = 'INSERT INTO alarms (uid, alarm) VALUES(%s, %s)'
+            cur.execute(sql, (uid, alarm))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            abort(500)
+        finally:
+            cur.close()
+
+
+    def updateAlarm(uid, alarm):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = 'UPDATE alarms SET alarm=%s WHERE uid=%s'
+            cur.execute(sql, (uid, alarm))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            abort(500)
+        finally:
+            cur.close()
+
+
+    def deleteAlarm(uid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = 'DELETE FROM alarms uid=%s'
+            cur.execute(sql, (uid))
             conn.commit()
         except Exception as e:
             print(e + 'が発生しています')
