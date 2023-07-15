@@ -193,7 +193,7 @@ def send_message(data):
         dbConnect.createMessage(uid, cid, message)
 
         # 全てのクライアントに新しいメッセージを送信
-        socketio.emit('message', {'message': message, 'uid': uid, 'cid': cid}, broadcast=True)
+        socketio.emit('message', {'message': message, 'uid': uid, 'cid': cid})
 
 
 # メッセージの削除
