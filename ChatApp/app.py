@@ -5,11 +5,22 @@ from datetime import timedelta
 import hashlib
 import uuid
 import re
+from functools import wraps
 
 
 app = Flask(__name__)
 app.secret_key = uuid.uuid4().hex
 app.permanent_session_lifetime = timedelta(days=30)
+
+# ログインデコレーター
+def login_required(view):
+    @wraps(view)
+    def inner(*args, **kwargs):
+        uid = session.get("uid")
+        if uid is None:
+            return redirect('/login')
+        return view(*args, **kwargs)
+    return inner
 
 
 # サインアップページの表示
@@ -87,22 +98,19 @@ def logout():
 
 # チャンネル一覧ページの表示
 @app.route('/')
+@login_required
 def index():
     uid = session.get("uid")
-    if uid is None:
-        return redirect('/login')
-    else:
-        channels = dbConnect.getChannelAll()
-        channels.reverse()
+    channels = dbConnect.getChannelAll()
+    channels.reverse()
     return render_template('index.html', channels=channels, uid=uid)
 
 
 # チャンネルの追加
 @app.route('/', methods=['POST'])
+@login_required
 def add_channel():
-    uid = session.get('uid')
-    if uid is None:
-        return redirect('/login')
+    uid = session.get("uid")
     channel_name = request.form.get('channelTitle')
     channel = dbConnect.getChannelByName(channel_name)
     if channel == None:
@@ -116,11 +124,9 @@ def add_channel():
 
 # チャンネルの更新
 @app.route('/update_channel', methods=['POST'])
+@login_required
 def update_channel():
     uid = session.get("uid")
-    if uid is None:
-        return redirect('/login')
-
     cid = request.form.get('cid')
     channel_name = request.form.get('channelTitle')
     channel_description = request.form.get('channelDescription')
@@ -131,28 +137,24 @@ def update_channel():
 
 # チャンネルの削除
 @app.route('/delete/<cid>')
+@login_required
 def delete_channel(cid):
     uid = session.get("uid")
-    if uid is None:
-        return redirect('/login')
+    channel = dbConnect.getChannelById(cid)
+    if channel["uid"] != uid:
+        flash('チャンネルは作成者のみ削除可能です')
+        return redirect ('/')
     else:
-        channel = dbConnect.getChannelById(cid)
-        if channel["uid"] != uid:
-            flash('チャンネルは作成者のみ削除可能です')
-            return redirect ('/')
-        else:
-            dbConnect.deleteChannel(cid)
-            channels = dbConnect.getChannelAll()
-            return redirect('/')
+        dbConnect.deleteChannel(cid)
+        channels = dbConnect.getChannelAll()
+        return redirect('/')
 
 
 # チャンネル詳細ページの表示
 @app.route('/detail/<cid>')
+@login_required
 def detail(cid):
     uid = session.get("uid")
-    if uid is None:
-        return redirect('/login')
-
     cid = cid
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)
@@ -162,11 +164,9 @@ def detail(cid):
 
 # メッセージの投稿
 @app.route('/message', methods=['POST'])
+@login_required
 def add_message():
     uid = session.get("uid")
-    if uid is None:
-        return redirect('/login')
-
     message = request.form.get('message')
     cid = request.form.get('cid')
 
@@ -178,11 +178,9 @@ def add_message():
 
 # メッセージの削除
 @app.route('/delete_message', methods=['POST'])
+@login_required
 def delete_message():
     uid = session.get("uid")
-    if uid is None:
-        return redirect('/login')
-
     message_id = request.form.get('message_id')
     cid = request.form.get('cid')
 
