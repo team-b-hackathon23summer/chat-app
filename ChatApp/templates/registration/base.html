@@ -7,15 +7,35 @@
     {% block title %}{% endblock %}
     <link rel="icon" href="../static/img/favicon.ico" />
     <link
-    rel="stylesheet"
-    href="{{url_for('static',filename='css/styles.css')}}"
-  />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;900&family=M+PLUS+1:wght@200&display=swap" rel="stylesheet">
+      rel="stylesheet"
+      href="{{url_for('static',filename='css/styles.css')}}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;900&family=M+PLUS+1:wght@200&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    {% block body %}{% endblock %}
+    <div class="registration-grid">
+      <div class="logo-area">
+        <img
+          src="{{ url_for('static',filename='img/logo.png') }}"
+          width="512"
+          height="512"
+          alt="logo"
+        />
+        <h1>Bloom</h1>
+        <p>会話で花咲くチャットアプリ</p>
+      </div>
+
+      {% block body %}{% endblock %}
     </div>
+
+    <script
+      src="{{url_for('static',filename='js/tabmenu.js')}}"
+      type="text/javascript"
+    ></script>
   </body>
 </html>

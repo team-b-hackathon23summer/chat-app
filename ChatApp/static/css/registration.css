@@ -1,6 +1,6 @@
 /* サインアップ/ログイン画面のCSS */
 
-.registration-wrapper {
+/* .registration-wrapper {
   width: 100vw;
   min-height: 100vh;
   display: flex;
@@ -9,26 +9,57 @@
   background-color: var(--navy_blue);
   font-family: "Abril Fatface", cursive;
   font-family: "League Spartan", sans-serif;
+} */
+
+.registration-grid {
+  background: #ecf7df;
+  min-height: 100vh;
+  display: grid;
+  grid-template:
+    "logo tab"
+    "logo tab"
+    "logo tab";
+  /* gap: 16vh 12vh; */
+  justify-content: space-around;
+}
+
+.logo-area {
+  grid-area: logo;
+  margin-top: 16vh;
+  width: 50vh;
+  height: 50vh;
+  background: #ecf7df;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.registration-tab {
+  grid-area: tab;
+  max-width: 64vh;
+  min-height: 64vh;
+  margin: auto;
+  margin-top: 50px;
 }
 
 .registration-container {
-  width: 95%;
-  height: 95%;
+  /* width: 95%; */
+  /* height: 95%; */
   margin: auto;
   border-radius: 10px;
-  position: absolute;
+  /* position: absolute; */
   display: flex;
   flex-direction: row-reverse;
   gap: 2rem;
-  background-color: var(--snow);
+  background-color: #fffaed;
   border: 3% solid var(--navy_blue);
 }
 
 .registration-form-wrapper {
-  width: 50%;
-  flex-grow: 1;
-  padding: 1rem 0 1rem 2rem;
-  position: relative;
+  width: 400px;
+  /* flex-grow: 1; */
+  /* padding: 1rem 0 1rem 2rem; */
+  /* position: relative; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -86,11 +117,15 @@
   justify-content: space-between;
   min-height: 60%;
   width: 70%;
-  margin: auto;
+}
+
+.registration-form.login {
+  margin: 10vh auto 0vh;
 }
 
 .registration-form.signup {
   padding-top: 40px;
+  margin: auto;
 }
 
 .registration-form > div {
