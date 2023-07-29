@@ -11,6 +11,37 @@
   font-family: "League Spartan", sans-serif;
 } */
 
+.registration-grid {
+  background: #ecf7df;
+  min-height: 100vh;
+  display: grid;
+  grid-template:
+    "logo tab"
+    "logo tab"
+    "logo tab";
+  /* gap: 16vh 12vh; */
+  justify-content: space-around;
+}
+
+.logo-area {
+  grid-area: logo;
+  margin-top: 16vh;
+  width: 50vh;
+  height: 50vh;
+  background: #ecf7df;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.registration-tab {
+  grid-area: tab;
+  max-width: 64vh;
+  min-height: 64vh;
+  margin: auto;
+  margin-top: 50px;
+}
+
 .registration-container {
   /* width: 95%; */
   /* height: 95%; */
