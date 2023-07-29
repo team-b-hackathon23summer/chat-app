@@ -11,10 +11,13 @@
         alt=""
       />
     </div>
-    <div class="sleep">
+    <!-- <div class="sleep">
       <img src="{{ url_for('static',filename='img/zzz.png') }}" alt="" />
+    </div> -->
+    <div class="alarm">
+      <p>〇〇さんのリラックスタイムが近づいてるよ〜</p>
     </div>
-    <div class="notice"><p>11時だよ！お花は寝るね～！</p></div>
+    <!-- <div class="notice"><p>11時だよ！お花は寝るね～！</p></div> -->
   </div>
   <div id="chat-header">
     <a href="{{ url_for('index') }}" class="back">&lt;</a>
@@ -84,6 +87,10 @@
   // prettier-ignore
   const uid = JSON.parse('{{ uid|tojson }}');
 </script>
+<script
+  src="{{url_for('static',filename='js/alarm.js')}}"
+  type="text/javascript"
+></script>
 <script
   src="{{url_for('static',filename='js/scroll-message.js')}}"
   type="text/javascript"

@@ -74,32 +74,32 @@
   align-self: center;
 }
 
-.notice {
+/* .alarm {
   position: relative;
   background-color: #5dab73;
-  /* width: 50%; */
+  width: 50%;
   text-align: center;
   padding: 5px;
   margin: 88px 0 0;
-  /*角丸の設定*/
+  角丸の設定
   border-radius: 20px;
   align-self: center;
-}
+} */
 
-.notice::before {
+/* .alarm::before {
   position: absolute;
   content: "";
   display: block;
   width: 0;
   height: 0;
-  /*三角形を作る*/
+  三角形を作る
   border-right: 20px solid transparent;
   border-left: 20px solid transparent;
   border-top: 20px solid #5dab73;
-  /*三角形の位置を指定*/
+  三角形の位置を指定
   bottom: -20px;
   left: calc(50% - 20px);
-}
+} */
 
 .sleep {
   margin: 0;
