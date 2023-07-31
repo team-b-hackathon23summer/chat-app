@@ -18,7 +18,7 @@ shellescape==3.8.1
 SQLAlchemy==1.4.41
 urllib3==1.26.12
 Werkzeug==2.2.2
-Flask-SocketIO==5.3.6
+Flask-SocketIO==5.3.5
 eventlet==0.33.3
 greenlet==2.0.2
 gunicorn==21.2.0
