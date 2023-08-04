@@ -31,7 +31,17 @@ function keydownEvent(e) {
       // updateモーダルが存在していないページ or updateモーダルはあるが表示されていない時
       if (updateChannelModalStyle === "none") {
         if (newMessageBody.value) {
-          document.newMessageForm.submit();
+          // デフォルトのフォームサブミットを防止する
+          e.preventDefault();
+
+          // フォームからチャンネルIDを取得
+          let cid = document.newMessageForm.cid.value;
+
+          // socketを使ってメッセージを送信
+          socket.emit('send_message', {message: newMessageBody.value, uid: uid, cid: cid});
+
+          // メッセージの入力欄をクリア
+          newMessageBody.value = '';
         }
       } else {
         // updateモーダルが表示されている場合はそっちの送信を優先する

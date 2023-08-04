@@ -6,11 +6,14 @@ import hashlib
 import uuid
 import re
 from functools import wraps
+from flask_socketio import SocketIO, send, emit
+import eventlet.wsgi
 
 
 app = Flask(__name__)
 app.secret_key = uuid.uuid4().hex
 app.permanent_session_lifetime = timedelta(days=30)
+socketio = SocketIO(app ,cors_allowed_origins='*')
 
 # ログインデコレーター
 def login_required(view):
@@ -161,7 +164,7 @@ def detail(cid):
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid)
 
-
+"""
 # メッセージの投稿
 @app.route('/message', methods=['POST'])
 @login_required
@@ -174,6 +177,21 @@ def add_message():
         dbConnect.createMessage(uid, cid, message)
 
     return redirect('/detail/{cid}'.format(cid = cid))
+"""
+
+# メッセージの投稿
+@socketio.on('send_message')
+def handle_message(data):
+    uid = data['uid']
+    cid = data['cid']
+    message = data['message']
+
+    if message:
+        # すべてのクライアントに新しいメッセージを送信
+        socketio.emit('message', {'message': message, 'uid': uid, 'cid': cid})
+
+        dbConnect.createMessage(uid, cid, message)
+
 
 
 # メッセージの削除

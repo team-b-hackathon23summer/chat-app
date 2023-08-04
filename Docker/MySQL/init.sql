@@ -1,4 +1,3 @@
-
 DROP DATABASE chatapp;
 DROP USER 'testuser';
 
