@@ -31,7 +31,7 @@ CREATE TABLE messages (
 
 CREATE TABLE alarms  (
     id serial PRIMARY KEY,
-    uid varchar(255) REFERENCES users(uid) UNIQUE NOT NULL,
+    uid varchar(255) UNIQUE NOT NULL REFERENCES users(uid) ,
     alarm time NOT NULL
 );
 
