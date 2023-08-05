@@ -53,7 +53,7 @@ services:
     ports:
       - "5000:5000"
     # コマンドを実行
-    command:  bash -c "python app.py"
+    command:  bash -c "gunicorn -w 1 -k eventlet -b 0.0.0.0:5000 'wsgi:app'"
     # 先にdbを起動してからappを起動する
     depends_on:
       db:
