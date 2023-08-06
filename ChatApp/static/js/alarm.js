@@ -1,4 +1,5 @@
 const alarm = document.querySelector(".alarm");
+const sleep = document.querySelector(".sleep");
 
 let timerId = null;
 
@@ -15,12 +16,13 @@ function closeAlarm() {
     //  0.5秒後にクラスactiveを削除
     alarm.classList.remove("active");
     alarm.style = "opacity:1";
+    sleep.classList.add("active");
   }, 500);
   clearTimeout(timerId); // タイマーを終了
 }
 
 const alarmTime = new Date();
-alarmTime.setHours(18, 51, 0, 0);
+alarmTime.setHours(19, 6, 0, 0);
 
 const currentTime = new Date();
 const timeDiff = alarmTime.getTime() - currentTime.getTime();

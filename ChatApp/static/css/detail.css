@@ -1,16 +1,17 @@
 .detail-container {
+  background: #bcdebe;
   height: 100vh;
   display: grid;
   grid-template:
-    "head head head head"
-    "obj chat chat chat" 1fr
-    "obj chat chat chat" 1fr;
+  "head head head head"
+  "obj ... chat chat"
+  "obj ... chat chat";
+  grid-template-columns: auto 5rem 1fr;
 }
 
 #chat-header {
   grid-area: head;
   width: 100%;
-  background-color: var(--navy_blue);
   color: var(--snow);
   height: 8vh;
   position: fixed;
@@ -59,19 +60,32 @@
 
 .flower-obj {
   max-width: 400px;
-  margin: 0;
+  margin: -3rem 0 0;
   /* padding: 0 64px 0 0; */
   grid-area: obj;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-content: center;
   justify-content: center;
   align-items: flex-start;
   /* gap: 8px; */
 }
 
+.tulip-area {
+    display: flex;
+    /* margin: 0 0 0 2rem */
+}
+
 .tulip {
-  align-self: center;
+  margin: 0 0 0 1rem;
+  padding: 5rem 0rem 0 3rem;
+}
+
+.scoop {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin: -4rem 0 -5rem 4rem;
 }
 
 /* .alarm {
@@ -101,23 +115,21 @@
   left: calc(50% - 20px);
 } */
 
-.sleep {
-  margin: 0;
-  align-self: flex-end;
-}
-
 .chat-box {
   grid-area: chat;
   display: flex;
   flex-direction: column;
   padding-left: 30px;
+  margin: 0 2vh 2vh;
+  background: #fffaed;
+  border-radius: 10% 10% 0 0;
 }
 
 /* メッセージエリア */
 
 #message-area {
   width: 100%;
-  padding-top: 10vh;
+  margin-top: -15vh;
   padding-right: 20px;
   padding-bottom: calc(20vh + 10px);
   padding-left: 20px;
@@ -221,24 +233,23 @@
 
 .typing-box-wrapper {
   position: fixed;
-  bottom: 0;
-  width: 72%;
+  bottom: 4vh;
+  width: 80%;
   height: 15vh;
   background-color: var(--snow);
   background-size: contain;
-  border-top: 3px solid lightgrey;
+  /* border-top: 3px solid lightgrey; */
   display: flex;
-  align-items: center;
 }
 
 .typing-box {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   height: 80%;
-  width: 60%;
-  margin: auto;
+  width: 80%;
+  margin: auto 1rem;
   position: relative;
-  background-color: var(--snow);
+  background-color: #ecf0f0;
   border-radius: 8px;
   border: solid 1px lightgrey;
   display: flex;
@@ -248,7 +259,7 @@
   background-color: transparent;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  width: 100%;
+  width: 80%;
   padding: 0.5em;
   border-radius: 16px;
   flex-grow: 1;
@@ -259,11 +270,10 @@
 }
 
 #add-message-btn {
-  background-color: var(--navy_blue);
   height: 100%;
   width: 40px;
   padding: 0;
-  margin: 0;
+  margin-right: 2vh;
 }
 
 #add-message-btn ion-icon {

@@ -4,7 +4,7 @@
   width: 50%;
   text-align: center;
   padding: 5px;
-  margin: 88px 0 0;
+  margin: 0 0 -3rem;
   /* 角丸の設定 */
   border-radius: 20px;
   align-self: center;
@@ -15,7 +15,7 @@
 .alarm::before {
   position: absolute;
   content: "";
-  /* display: block; */
+  display: block;
   width: 0;
   height: 0;
   /* 三角形を作る */
@@ -38,4 +38,17 @@
   100% {
     opacity: 1;
   }
+}
+
+.sleep {
+  display: none;
+  align-self: flex-end;
+  transition: all 2s;
+  align-self: start;
+  margin: 2rem 0 0 0;
+}
+
+.sleep.active {
+  display: block;
+  animation: appear 0.5s ease;
 }
