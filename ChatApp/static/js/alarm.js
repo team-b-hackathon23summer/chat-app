@@ -22,7 +22,7 @@ function closeAlarm() {
 }
 
 const alarmTime = new Date();
-alarmTime.setHours(19, 6, 0, 0);
+alarmTime.setHours(21, 38, 0, 0);
 
 const currentTime = new Date();
 const timeDiff = alarmTime.getTime() - currentTime.getTime();

@@ -71,6 +71,27 @@
   /* gap: 8px; */
 }
 
+.watering-can {
+  transform: translateX(-100%);
+  object-fit: cover;
+  height: 10rem;
+}
+
+.watering-can.active {
+  transform: translateX(10%);
+  transition: all 2s;
+  animation: appear 0.5s ease;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .tulip-area {
     display: flex;
     /* margin: 0 0 0 2rem */
@@ -78,7 +99,7 @@
 
 .tulip {
   margin: 0 0 0 1rem;
-  padding: 5rem 0rem 0 3rem;
+  padding: 0 0rem 0 3rem;
 }
 
 .scoop {
