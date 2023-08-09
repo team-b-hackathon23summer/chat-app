@@ -26,12 +26,18 @@
 // 代わりに会話回数を保持して、会話回数の判定が一定であれば、ジョウロが作動するようにする。
 // ジョウロが3回作動すれば、お花の1段階成長する
 
+// ジョウロの作動回数をローカルストレージで保持するためのカウント
+let wateringCanCount = 0
+
 const wateringCan = document.querySelector(".watering-can");
 const scoop = document.querySelector(".scoop");
 
 const wateringCanClick = () => {
     let timerId = null;
   showWateringCan();
+  wateringCanCount++
+  localStorage.setItem('wateringCanCount', wateringCanCount)
+//   console.log(localStorage.getItem('wateringCanCount'));
 };
 
 // ジョウロを5秒だけ表示
@@ -53,3 +59,5 @@ function closeWateringCan() {
 }
 
 scoop.addEventListener("click", wateringCanClick);
+
+
