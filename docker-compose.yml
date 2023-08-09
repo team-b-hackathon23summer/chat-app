@@ -62,13 +62,19 @@ services:
     #     # dbのヘルスチェックが終わってからappを起動させる
     #     condition: service_healthy
   nginx:
+    # 使用するDockerイメージを指定。ここでは最新版のnginxイメージを使用。
     image: nginx:latest
+    # このサービスのコンテナの名前をnginxとして指定。
     container_name: nginx
     volumes:
+      # ローカルのnginx.confファイルをコンテナの/etc/nginx/conf.d/default.confにマウント。
+      # 'ro'はread-only（読み取り専用）を意味する。
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     ports:
+      # ホストの80番ポートをコンテナの5000番ポートにマッピング。
       - "80:5000"
     depends_on:
+      # nginxサービスを起動する前にappサービスを起動させる。
       - app
-volumes:
-  mysql_data:
+# volumes:
+#   mysql_data:
