@@ -38,10 +38,19 @@
 .bed-obj {
   grid-area: obj;
   display: flex;
-  justify-content: center;
-  align-items: center;
   object-fit: cover;
-  padding-top: 216px;
+  margin-bottom: 5rem;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.flower-bed {
+  display: block;
+}
+
+.new-flower {
+  display: block;
+  position: absolute;
 }
 
 .channel-title {
