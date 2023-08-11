@@ -46,49 +46,50 @@ const phase5 = "/static/img/tulip.png";
 // スコップボタンを押したら、お花をホームの花壇に植え替える機能
 const bed = document.querySelector(".bed-obj");
 const flowerBed = document.querySelector(".flower-bed");
+const tulipYellow = "/static/img/tulip-yellow.png";
 
 // スコップボタンを押したら、img要素を生成する。連番でクラスを振り管理する
 let flowerId = 0;
 let flowerPosition = 0;
 
-let centerX = document.documentElement.clientWidth / 2;
-let centerY = document.documentElement.clientHeight / 2;
+// 新しいお花が生成される位置の初期値
+let flowerBottom = 16;
+let flowerLeft = 40;
 
-let elem = document.elementFromPoint(centerX, centerY);
-
-elem.style.background = "red";
-alert(elem.tagName);
-
-// // 要素のドキュメント座標を取得
-// function getCoords(elem) {
-//   let box = elem.getBoundingClientRect();
-
-//   return {
-//     top: box.top + pageYOffset,
-//     left: box.left + pageXOffset,
-//   };
-// }
-
-// getCoords()
-
-window.addEventListener('load', function(){
-    bed.addEventListener('click', logPosition);
-});
-
-function logPosition(event) {
-    console.log("screenX: " + event.screenX);
-    console.log("screenY: " + event.screenY);
-}
-
-let clientRect = bed.getBoundingClientRect();
-console.log(clientRect);
-
+flowerGenerateTurn = 14;
 function FlowerGenerator() {
+  flowerGenerateTurn -= 1;
   flowerId += 1;
 
+  if (flowerGenerateTurn > 0) {
+    // お花の生成位置をずらす 3remずつの配置がちょうど良い。
+    // 一列に8束ほどなので、3 * 8 = 24remプラスとなる...
+    flowerLeft += 3;
+    if (flowerLeft > 40 + 24) {
+      flowerBottom -= 2;
+      flowerLeft -= 27;
+    }
+    // 二段目の生成位置をいい感じにずらします。
+    flowerLeft += 3
+  }
+
   const newFlower = document.createElement("img");
+  let flowerRect = newFlower.getBoundingClientRect()
+
+  // for(let i = 13; i <= 15; i++) {
+  //   flowerBottom = i;
+  //   for(let j = 30; j <= 56; j++) {
+  //     flowerLeft = j;
+  //   }
+  // }
+  
+  // bottom: 13rem ~ 15;
+  // left: 30rem ~ 56rem;
+  console.log(flowerRect);
   newFlower.classList.add("new-flower", flowerId);
-  newFlower.src = phase5; // 画像パス
+  newFlower.style.bottom = `${flowerBottom}rem`;
+  newFlower.style.left = `${flowerLeft}rem`
+  newFlower.src = tulipYellow; // 画像パス
   newFlower.alt = "新しいお花"; // 代替テキスト
   newFlower.width = 96; // 横サイズ（px）
   newFlower.height = 96; // 縦サイズ（px）

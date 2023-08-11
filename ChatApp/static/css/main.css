@@ -51,6 +51,8 @@
 .new-flower {
   display: block;
   position: absolute;
+  bottom: 8rem;
+  left: 6rem;
 }
 
 .channel-title {
