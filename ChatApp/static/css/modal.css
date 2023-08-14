@@ -20,14 +20,15 @@
 }
 
 .modal-content {
-  background-color: var(--navy);
+  background-color: #FFFAED;
   margin: 20% auto;
   width: 70%;
-  border: 12px solid var(--navy_blue);
+  border: 12px solid #BCDEBE;;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
   animation-name: modalopen;
   animation-duration: 1s;
   position: relative;
+  border-radius: 1rem;
 }
 
 @keyframes modalopen {
@@ -44,7 +45,7 @@
 }
 
 .modal-header {
-  background: var(--ash_grey);
+  background:  #BCDEBE;
   padding: 3px 15px 3px 32px;
   color: var(--navy);
   display: flex;
@@ -75,11 +76,12 @@
 
 .channel-form-input {
   width: 70%;
-  background-color: transparent;
+  background-color: #fff transparent;
   margin-top: 8px;
   margin-bottom: 20px;
   padding: 0.5rem;
   color: var(--snow);
+  border-radius: 1rem;
 }
 
 .channel-form-input::placeholder {
@@ -110,8 +112,11 @@
 }
 
 .modal-body button {
-  width: 70%;
-  background-color: var(--salmon_pink);
+  width: 30%;
+  margin-left: 24rem;
+  background-color: #E8F9D3;
+  color: #5DAB73;
+  border-radius: 10px;
 }
 
 #delete-channel-confirmation-button {
