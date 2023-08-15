@@ -15,7 +15,8 @@
 
 #add-channel-modal,
 #update-channel-modal,
-#delete-channel-modal {
+#delete-channel-modal,
+#alarm-modal {
   display: none;
 }
 
@@ -74,7 +75,7 @@
   border-radius: 0 0 20px 20px;
 }
 
-.channel-form-input {
+.modal-form-input {
   width: 70%;
   background-color: #fff transparent;
   margin-top: 8px;
@@ -84,17 +85,17 @@
   border-radius: 1rem;
 }
 
-.channel-form-input::placeholder {
+.modal-form-input::placeholder {
   color: var(--snow);
   font-size: 12px;
 }
 
-.channel-form-input:hover {
+.modal-form-input:hover {
   background-color: var(--navy_blue);
   color: var(--snow);
 }
 
-.channel-form-input:focus {
+.modal-form-input:focus {
   background-color: var(--navy_blue);
   color: var(--snow);
 }
@@ -109,6 +110,7 @@
 .modal-body p,
 .modal-body a {
   width: 70%;
+  color: #000;
 }
 
 .modal-body button {

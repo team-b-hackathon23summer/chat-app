@@ -7,7 +7,7 @@ const addChannelConfirmButton = document.getElementById(
 );
 
 // pagination.jsでチャンネル一覧が表示されるのを待ってから読みこまれる
-// (チャンネル一覧を表示する処理が終わるまでaddChannnelButtonは存在しないためundefinedになる)
+// (チャンネル一覧を表示する処理が終わるまでaddChannelButtonは存在しないためundefinedになる)
 const loadAddChannelButton = () => {
   const addChannelButton = document.getElementById("add-channel-button");
 
