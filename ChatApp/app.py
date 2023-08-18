@@ -193,7 +193,6 @@ def handle_message(data):
         dbConnect.createMessage(uid, cid, message)
 
 
-
 # メッセージの削除
 @app.route('/delete_message', methods=['POST'])
 @login_required
