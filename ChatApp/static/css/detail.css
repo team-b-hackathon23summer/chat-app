@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .detail-container {
   height: 100vh;
   display: grid;
@@ -335,3 +336,374 @@
     width: 40%;
   }
 }
+||||||| empty tree
+=======
+.detail-container {
+  background: #bcdebe;
+  height: 100vh;
+  display: grid;
+  grid-template:
+  "head head head head"
+  "obj ... chat chat"
+  "obj ... chat chat";
+  grid-template-columns: auto 5rem 1fr;
+}
+
+#chat-header {
+  grid-area: head;
+  width: 100%;
+  color: var(--snow);
+  height: 8vh;
+  position: fixed;
+  top: 0;
+  /* right: 0; */
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-left: 20px;
+  z-index: 2;
+}
+
+.back {
+  font-size: 32px;
+  text-decoration: none;
+  color: #555;
+}
+
+#chatroom-name {
+  font-size: larger;
+}
+
+#chatroom-description {
+  font-size: 12px;
+  font-weight: 200;
+  letter-spacing: 0.15em;
+}
+
+#channel-update-btn {
+  margin: auto 0;
+  padding: 0.2em 0.6em;
+  background-color: var(--salmon_pink);
+  font-size: 12px;
+  border: solid 6px var(--navy_blue);
+  border-radius: 50%;
+  z-index: 10;
+  box-shadow: 0 0 0 3px var(--salmon_pink);
+}
+
+#channel-update-btn:hover {
+  background-color: var(--middle_pink);
+  box-shadow: 0 0 0 3px var(--middle_pink);
+  cursor: pointer;
+}
+
+.flower-obj {
+  max-width: 400px;
+  margin: -3rem 0 0;
+  /* padding: 0 64px 0 0; */
+  grid-area: obj;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-start;
+  /* gap: 8px; */
+}
+
+.watering-can {
+  transform: translateX(-100%);
+  object-fit: cover;
+  height: 10rem;
+}
+
+.watering-can.active {
+  transform: translateX(10%);
+  transition: all 2s;
+  animation: appear 0.5s ease;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.tulip-area {
+    display: flex;
+    /* margin: 0 0 0 2rem */
+}
+
+.tulip {
+  margin: 0 0 0 1rem;
+  padding: 0 0rem 0 3rem;
+}
+
+.scoop {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin: -4rem 0 -5rem 4rem;
+}
+
+/* .alarm {
+  position: relative;
+  background-color: #5dab73;
+  width: 50%;
+  text-align: center;
+  padding: 5px;
+  margin: 88px 0 0;
+  角丸の設定
+  border-radius: 20px;
+  align-self: center;
+} */
+
+/* .alarm::before {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  三角形を作る
+  border-right: 20px solid transparent;
+  border-left: 20px solid transparent;
+  border-top: 20px solid #5dab73;
+  三角形の位置を指定
+  bottom: -20px;
+  left: calc(50% - 20px);
+} */
+
+.chat-box {
+  grid-area: chat;
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+  margin: 0 2vh 2vh;
+  background: #fffaed;
+  border-radius: 10% 10% 0 0;
+}
+
+/* メッセージエリア */
+
+#message-area {
+  width: 100%;
+  margin-top: -15vh;
+  padding-right: 20px;
+  padding-bottom: calc(20vh + 10px);
+  padding-left: 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 8px;
+  color: grey;
+  margin: 1px 0;
+}
+
+.my-messages {
+  display: flex;
+}
+
+.delete-message-btn {
+  background-color: var(--snow);
+  height: 40px;
+  width: 40px;
+  line-height: 47px;
+  padding: 0;
+  margin: 0;
+  bottom: 8px;
+  right: 8px;
+}
+
+.delete-message-btn ion-icon {
+  font-size: 1rem;
+}
+
+.box {
+  position: relative;
+  width: 60%;
+  margin: 0;
+  padding: 0.7em 0 0.4em 1em;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  white-space: pre-wrap;
+}
+
+.box-left {
+  background-color: rgba(18, 37, 67, 0.2);
+  color: var(--navy_blue);
+}
+
+.box-right {
+  background-color: rgba(18, 37, 67, 0.4);
+  color: var(--snow);
+  margin-left: auto;
+}
+
+.box-left:before {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid grey;
+  content: "";
+}
+
+.box-right:before {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid grey;
+  content: "";
+}
+
+#no-message {
+  padding-top: 54px;
+  width: 100%;
+  height: calc(100vh - (54px + 15vh));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#no-message p {
+  display: inline;
+}
+
+/* ========================================================== */
+
+.typing-box-wrapper {
+  position: fixed;
+  bottom: 4vh;
+  width: 80%;
+  height: 15vh;
+  background-color: var(--snow);
+  background-size: contain;
+  /* border-top: 3px solid lightgrey; */
+  display: flex;
+}
+
+.typing-box {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  height: 80%;
+  width: 80%;
+  margin: auto 1rem;
+  position: relative;
+  background-color: #ecf0f0;
+  border-radius: 8px;
+  border: solid 1px lightgrey;
+  display: flex;
+}
+
+.typing-box textarea {
+  background-color: transparent;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  width: 80%;
+  padding: 0.5em;
+  border-radius: 16px;
+  flex-grow: 1;
+}
+
+.typing-box textarea:focus {
+  cursor: pointer;
+}
+
+#add-message-btn {
+  height: 100%;
+  width: 40px;
+  padding: 0;
+  margin-right: 2vh;
+}
+
+#add-message-btn ion-icon {
+  font-size: 1.3rem;
+}
+
+/* ========================================================== */
+/* Tooltip */
+
+#message-send-tooltip {
+  position: relative;
+}
+
+#message-send-tooltip-description {
+  display: none;
+  position: absolute;
+  padding: 10px 16px;
+  font-size: 12px;
+  line-height: 1.6em;
+  color: var(--snow);
+  background: var(--navy_blue);
+  min-width: 182px;
+  z-index: 8;
+}
+
+#message-send-tooltip-description p {
+  font-size: 12px;
+  margin: 0;
+}
+
+#message-send-tooltip-description:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  border: 15px solid transparent;
+  border-top: 15px solid var(--navy_blue);
+  margin-left: -15px;
+}
+
+#message-send-tooltip:hover #message-send-tooltip-description {
+  display: inline-block;
+  top: calc(-1 * (15vh * 0.7));
+  left: -94px;
+}
+
+/* ========================================================== */
+/* レスポンシブ */
+
+@media screen and (max-width: 550px) {
+  #chatroom-description {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .chat-box {
+    padding-left: 0;
+    width: 100%;
+  }
+
+  .typing-box-wrapper {
+    width: 72%;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  .box {
+    width: 40%;
+  }
+}
+>>>>>>> frontend-test

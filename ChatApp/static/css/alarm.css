@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .alarm {
   position: relative;
   background-color: #5dab73;
@@ -39,3 +40,60 @@
     opacity: 1;
   }
 }
+||||||| empty tree
+=======
+.alarm {
+  position: relative;
+  background-color: #5dab73;
+  width: 50%;
+  text-align: center;
+  padding: 5px;
+  margin: 0 0 -3rem;
+  /* 角丸の設定 */
+  border-radius: 20px;
+  align-self: center;
+  display: none;
+  transition: all 2s;
+}
+
+.alarm::before {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  /* 三角形を作る */
+  border-right: 20px solid transparent;
+  border-left: 20px solid transparent;
+  border-top: 20px solid #5dab73;
+  /* 三角形の位置を指定 */
+  bottom: -20px;
+  left: calc(50% - 20px);
+}
+
+.alarm.active {
+  display: block;
+  animation: appear 0.5s ease;
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.sleep {
+  display: none;
+  align-self: flex-end;
+  transition: all 2s;
+  align-self: start;
+  margin: 2rem 0 0 0;
+}
+
+.sleep.active {
+  display: block;
+  animation: appear 0.5s ease;
+}
+>>>>>>> frontend-test
