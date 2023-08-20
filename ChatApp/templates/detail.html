@@ -3,24 +3,41 @@
 {% endblock %} {% block body %}
 <div class="detail-container">
   <div class="flower-obj">
-    <div class="tulip">
-      <img
+    <div class="alarm">
+      <p>お花は寝るよ〜</p>
+    </div>
+    <div class="watering-can">
+      <img src="{{ url_for('static',filename='img/watering-can-active.png') }}" alt="ジョウロ" width="216" height="216">
+    </div>
+    <div class="tulip-area">
+      <div class="tulip">
+        <img
+        class="growth"
         src="{{ url_for('static',filename='img/tulip.png') }}"
         width="192"
         height="360"
-        alt=""
+        alt="チューリップ"
+        />
+      </div>
+      <div class="sleep">
+        <img src="{{ url_for('static',filename='img/zzz.png') }}" width="96" height="96" alt="zzz" />
+      </div>
+    </div>
+    <div class="scoop">
+      <img
+        src="{{ url_for('static',filename='img/scoop.png') }}"
+        alt="スコップ"
+        width="64"
+        height="64"
       />
     </div>
-    <!-- <div class="sleep">
-      <img src="{{ url_for('static',filename='img/zzz.png') }}" alt="" />
-    </div> -->
-    <div class="alarm">
-      <p>〇〇さんのリラックスタイムが近づいてるよ〜</p>
-    </div>
-    <!-- <div class="notice"><p>11時だよ！お花は寝るね～！</p></div> -->
   </div>
   <div id="chat-header">
     <a href="{{ url_for('index') }}" class="back">&lt;</a>
+    <img
+      src="{{ url_for('static',filename='img/flower-icon.png') }}"
+      alt="お花のアイコン"
+    />
     <p id="chatroom-name">{{ channel.name }}</p>
     {% if channel.abstract is not none %}
     <p id="chatroom-description">{{ channel.abstract }}</p>
@@ -70,7 +87,13 @@
         <input type="hidden" name="cid" value="{{ channel.id }}" />
         <div id="message-send-tooltip">
           <button type="submit" id="add-message-btn">
-            <ion-icon name="paper-plane"></ion-icon>
+            <!-- <ion-icon name="paper-plane"></ion-icon> -->
+            <img
+              src="{{ url_for('static',filename='img/watering-can.png') }}"
+              alt="ジョウロ"
+              width="64"
+              height="64"
+            />
           </button>
           <div id="message-send-tooltip-description">
             <p>Command + Enter</p>
@@ -89,6 +112,14 @@
 </script>
 <script
   src="{{url_for('static',filename='js/alarm.js')}}"
+  type="text/javascript"
+></script>
+<script
+  src="{{url_for('static',filename='js/watering-can.js')}}"
+  type="text/javascript"
+></script>
+<script
+  src="{{url_for('static',filename='js/growth.js')}}"
   type="text/javascript"
 ></script>
 <script

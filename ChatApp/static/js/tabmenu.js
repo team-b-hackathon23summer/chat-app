@@ -5,7 +5,7 @@
 
   // DOM取得
   const tabMenus = document.querySelectorAll(".tab__menu-item");
-  console.log(tabMenus);
+  // console.log(tabMenus);
 
   // イベント付加
   tabMenus.forEach((tabMenu) => {
@@ -18,7 +18,7 @@
     const tabTargetData = e.currentTarget.dataset.tab;
     // クリックされた要素の親要素と、その子要素を取得
     const tabList = e.currentTarget.closest(".tab__menu");
-    console.log(tabList);
+    // console.log(tabList);
     const tabItems = tabList.querySelectorAll(".tab__menu-item");
     // クリックされた要素の親要素の兄弟要素の子要素を取得
     const tabPanelItems =

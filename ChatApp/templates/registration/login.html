@@ -3,15 +3,19 @@
 {% endblock %} {% block body %}
 <div class="registration-tab">
   <ul class="tab__menu">
-    <li class="tab__menu-item is-active" data-tab="01"><a href="{{ url_for('login') }}">login</a></li>
-    <li class="tab__menu-item" data-tab="02"><a href="{{ url_for('signup') }}">signup</a></li>
+    <li class="tab__menu-item is-active" data-tab="01">
+      <a href="{{ url_for('login') }}">login</a>
+    </li>
+    <li class="tab__menu-item" data-tab="02">
+      <a href="{{ url_for('signup') }}">signup</a>
+    </li>
   </ul>
   <div class="tab__panel">
     <div class="tab__panel-box tab__panel-box001 is-show" data-panel="01">
       <p class="tab__panel-text"></p>
       <div class="registration-container">
         <div class="registration-form-wrapper">
-          <form class="registration-form" method="post">
+          <form class="registration-form login" method="post">
             <div>
               <label for="email-input">Email</label>
               <input
@@ -39,9 +43,6 @@
               </ul>
               {% endif %} {% endwith %}
               <button class="registration-button pink">LOGIN</button>
-              <a href="{{ url_for('signup') }}">
-                登録はこちら
-              </a>
             </div>
           </form>
         </div>
@@ -99,9 +100,6 @@
               </ul>
               {% endif %} {% endwith %}
               <button class="registration-button pink">SIGN UP</button>
-              <a class="switch-register-mode" href="{{ url_for('login') }}">
-                ログインする
-              </a>
             </div>
           </form>
         </div>
