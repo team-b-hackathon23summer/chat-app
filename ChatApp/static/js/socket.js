@@ -8,7 +8,7 @@ socket.on('message', function(data) {
   let messageArea = document.getElementById('message-area');
 
   let messageBox = document.createElement('div');
-  if (data.uid == uid) {
+  if (data.uid === uid) {
     messageBox.className = 'my-messages';
     let messageText = document.createElement('p');
     messageText.className = 'box box-right';
