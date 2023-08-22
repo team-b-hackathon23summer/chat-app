@@ -145,14 +145,15 @@
 
 .chat-box {
   grid-area: chat;
-  min-height: 80vh;
-  max-height: 80vh;
+  min-height: 70vh;
+  max-height: 70vh;
   display: flex;
   flex-direction: column;
   padding-left: 30px;
-  margin: 5vh 2vh 1vh;
+  margin: 8vh 2vh 1vh;
   background: #fffaed;
   border-radius: 30px;
+
 }
 
 /* メッセージエリア */
@@ -214,7 +215,7 @@
   font-size: 14px;
   line-height: 1.5;
   letter-spacing: 0.1em;
-  white-space: pre-wrap;
+  white-space: normal;
 }
 
 .box-left {
@@ -226,6 +227,7 @@
   background-color: rgba(18, 37, 67, 0.4);
   color: var(--snow);
   margin-left: auto;
+  word-break: break-word;
   
 }
 
