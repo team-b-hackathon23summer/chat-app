@@ -20,7 +20,7 @@
     "logo tab"
     "logo tab";
   /* gap: 16vh 12vh; */
-  justify-content: space-around;
+  justify-content: center;
 }
 
 /* 例: 768px以下の画面サイズに適用 */
