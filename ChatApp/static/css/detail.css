@@ -5,7 +5,8 @@
   grid-template:
   "head head head head"
   "obj ... chat chat"
-  "obj ... chat chat";
+  "obj ... chat chat"
+  "... ... foot foot";
   grid-template-columns: auto 5rem 1fr;
 }
 
@@ -60,7 +61,7 @@
 
 .flower-obj {
   max-width: 400px;
-  margin: -3rem 0 0;
+  margin: -10rem 0 0;
   /* padding: 0 64px 0 0; */
   grid-area: obj;
   display: flex;
@@ -102,6 +103,12 @@
   padding: 0 0rem 0 3rem;
 }
 
+.scoop-img {
+  display: none;
+  border-radius: 50%;
+  box-shadow: 3px 3px 3px 2px rgba(0,0,0,0.4);
+}
+
 .scoop {
   width: 100%;
   display: flex;
@@ -138,21 +145,24 @@
 
 .chat-box {
   grid-area: chat;
+  min-height: 70vh;
+  max-height: 70vh;
   display: flex;
   flex-direction: column;
   padding-left: 30px;
-  margin: 0 2vh 2vh;
+  margin: 8vh 2vh 1vh;
   background: #fffaed;
-  border-radius: 10% 10% 0 0;
+  border-radius: 30px;
+
 }
 
 /* メッセージエリア */
 
 #message-area {
   width: 100%;
-  margin-top: -15vh;
+  margin-top: 3vh;
   padding-right: 20px;
-  padding-bottom: calc(20vh + 10px);
+  padding-bottom: calc(5vh + 10px);
   padding-left: 20px;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -168,6 +178,7 @@
 .messages {
   display: flex;
   flex-direction: column;
+  margin-bottom: 3vh;
 }
 
 .user-name {
@@ -178,6 +189,7 @@
 
 .my-messages {
   display: flex;
+  margin-bottom: 3vh;
 }
 
 .delete-message-btn {
@@ -203,7 +215,7 @@
   font-size: 14px;
   line-height: 1.5;
   letter-spacing: 0.1em;
-  white-space: pre-wrap;
+  white-space: normal;
 }
 
 .box-left {
@@ -215,9 +227,11 @@
   background-color: rgba(18, 37, 67, 0.4);
   color: var(--snow);
   margin-left: auto;
+  word-break: break-word;
+  
 }
 
-.box-left:before {
+/* .box-left:before {
   position: absolute;
   top: 3px;
   left: 3px;
@@ -225,9 +239,9 @@
   height: 100%;
   border: 1px solid grey;
   content: "";
-}
+} */
 
-.box-right:before {
+/* .box-right:before {
   position: absolute;
   top: 3px;
   right: 3px;
@@ -235,7 +249,7 @@
   height: 100%;
   border: 1px solid grey;
   content: "";
-}
+} */
 
 #no-message {
   padding-top: 54px;
@@ -253,9 +267,12 @@
 /* ========================================================== */
 
 .typing-box-wrapper {
-  position: fixed;
-  bottom: 4vh;
-  width: 80%;
+  /* position: fixed; */
+  grid-area: foot;
+  margin-left: auto;
+  left: 55vh;
+  /* bottom: 4vh; */
+  width: 100%;
   height: 15vh;
   background-color: var(--snow);
   background-size: contain;
@@ -267,8 +284,8 @@
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   height: 80%;
-  width: 80%;
-  margin: auto 1rem;
+  width: 100%;
+  margin: auto 1rem 2rem;
   position: relative;
   background-color: #ecf0f0;
   border-radius: 8px;

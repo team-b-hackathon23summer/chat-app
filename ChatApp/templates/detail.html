@@ -13,7 +13,7 @@
       <div class="tulip">
         <img
         class="growth"
-        src="{{ url_for('static',filename='img/tulip.png') }}"
+        src="{{ url_for('static',filename='img/growing1.png') }}"
         width="192"
         height="360"
         alt="チューリップ"
@@ -25,6 +25,7 @@
     </div>
     <div class="scoop">
       <img
+      class="scoop-img"
         src="{{ url_for('static',filename='img/scoop.png') }}"
         alt="スコップ"
         width="64"
@@ -49,59 +50,63 @@
   </div>
   <div class="chat-box">
     <div id="message-area">
-      {% if messages|length > 0 %} {% for message in messages %} {% if
-      message.uid == uid %}
-      <div class="my-messages">
-        <p class="box box-right">{{ message.message }}</p>
-        <form action="/delete_message" method="POST">
-          <input type="hidden" value="{{ channel.id }}" name="cid" />
-          <button
-            class="delete-message-btn"
-            name="message_id"
-            value="{{ message.id }}"
-          >
-            <ion-icon
-              name="trash-bin-outline"
-              style="color: #122543"
-            ></ion-icon>
-          </button>
-        </form>
-        {% else %}
-      </div>
-      <div class="messages">
-        <p class="user-name">{{ message.user_name }}</p>
-        <p class="box box-left">{{ message.message }}</p>
-      </div>
-      {% endif %} {% endfor %} {% else %}
+      {% if messages|length > 0 %}
+        {% for message in messages %}
+          {% if message.uid == uid %}
+            <div class="my-messages">
+              <p class="box box-right">{{ message.message }}</p>
+              <form action="/delete_message" method="POST">
+                <input type="hidden" value="{{ channel.id }}" name="cid" />
+                <button
+                  class="delete-message-btn"
+                  name="message_id"
+                  value="{{ message.id }}"
+                  >
+                  <ion-icon
+                    name="trash-bin-outline"
+                    style="color: #122543"
+                  ></ion-icon>
+                </button>
+              </form>
+            </div>
+          {% else %}
+            <div class="messages">
+              <p class="user-name">{{ message.user_name }}</p>
+              <p class="box box-left">{{ message.message }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% else %}
       <div id="no-message"><p>No Message</p></div>
       {% endif %}
     </div>
-    <div class="typing-box-wrapper">
-      <form
-        class="typing-box"
-        action="/message"
-        method="POST"
-        name="newMessageForm"
-      >
-        <textarea name="message" id="message" autofocus></textarea>
-        <input type="hidden" name="cid" value="{{ channel.id }}" />
-        <div id="message-send-tooltip">
-          <button type="submit" id="add-message-btn">
-            <!-- <ion-icon name="paper-plane"></ion-icon> -->
-            <img
-              src="{{ url_for('static',filename='img/watering-can.png') }}"
-              alt="ジョウロ"
-              width="64"
-              height="64"
-            />
-          </button>
-          <div id="message-send-tooltip-description">
-            <p>Command + Enter</p>
-            <p>Ctrl + Enter</p>
+  </div>
+      <div class="typing-box-wrapper">
+        <form
+          class="typing-box"
+          action="/message"
+          method="POST"
+          name="newMessageForm"
+        >
+          <textarea name="message" id="message" autofocus></textarea>
+          <input type="hidden" name="cid" value="{{ channel.id }}" />
+          <div id="message-send-tooltip">
+            <button type="submit" id="add-message-btn">
+              <!-- <ion-icon name="paper-plane"></ion-icon> -->
+              <img
+                src="{{ url_for('static',filename='img/watering-can.png') }}"
+                alt="ジョウロ"
+                width="64"
+                height="64"
+              />
+            </button>
+            <!-- <div id="message-send-tooltip-description">
+              <p>Command + Enter</p>
+              <p>Ctrl + Enter</p>
+            </div> -->
           </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
   </div>
 </div>
 
@@ -112,10 +117,6 @@
 </script>
 <script
   src="{{url_for('static',filename='js/alarm.js')}}"
-  type="text/javascript"
-></script>
-<script
-  src="{{url_for('static',filename='js/watering-can.js')}}"
   type="text/javascript"
 ></script>
 <script

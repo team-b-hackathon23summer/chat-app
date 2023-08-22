@@ -20,8 +20,23 @@
     "logo tab"
     "logo tab";
   /* gap: 16vh 12vh; */
-  justify-content: space-around;
+  justify-content: center;
 }
+
+/* 例: 768px以下の画面サイズに適用 */
+@media (max-width: 768px) {
+  .registration-grid {
+    grid-template:
+      "logo"
+      "logo"
+      "logo"
+      "tab"
+      "tab"
+      "tab";
+    gap: 8vh 8vw;
+  }
+}
+
 
 .logo-area {
   grid-area: logo;
@@ -33,6 +48,46 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.logo-area > h1{
+  font-size: 40px;
+  font-weight: 900;
+  margin: 10px 0px;
+  /* margin-right: 100px; */
+}
+@media (max-width: 768px) {
+  .logo-area > h1 {
+    font-size: 24px;
+    text-align: center;
+  }
+}
+.logo-area > p {
+  margin: 0px 0px;
+}
+@media (max-width: 768px) {
+  .logo-area > p {
+    font-size: 10px;
+    text-align: center;
+  }
+}
+.logo-area > img {
+  width: 70%;
+  height: auto;
+  max-width: 60vw;
+  max-height: 60vh;
+  object-fit: contain;
+  padding: auto;
+  border-radius: 30px;
+}
+
+@media (max-width: 768px) {
+  .logo-area > img {
+    max-width: 30vw;
+    max-height: 30vh;
+    margin: auto;
+  }
+}
+
 
 .registration-tab {
   grid-area: tab;
@@ -83,7 +138,7 @@
 }
 
 .registration-logo > img {
-  height: 100%;
+  height: 10%;
   width: auto;
   border-left: solid 12px var(--navy_blue);
   padding-left: 10px;
