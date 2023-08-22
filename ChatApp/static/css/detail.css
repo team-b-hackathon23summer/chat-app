@@ -60,7 +60,7 @@
 
 .flower-obj {
   max-width: 400px;
-  margin: -3rem 0 0;
+  margin: -10rem 0 0;
   /* padding: 0 64px 0 0; */
   grid-area: obj;
   display: flex;
@@ -102,6 +102,12 @@
   padding: 0 0rem 0 3rem;
 }
 
+.scoop-img {
+  display: none;
+  border-radius: 50%;
+  box-shadow: 3px 3px 3px 2px rgba(0,0,0,0.4);
+}
+
 .scoop {
   width: 100%;
   display: flex;
@@ -138,6 +144,7 @@
 
 .chat-box {
   grid-area: chat;
+  max-height: 80vh;
   display: flex;
   flex-direction: column;
   padding-left: 30px;
@@ -150,9 +157,9 @@
 
 #message-area {
   width: 100%;
-  margin-top: -15vh;
+  margin-top: 3vh;
   padding-right: 20px;
-  padding-bottom: calc(20vh + 10px);
+  padding-bottom: calc(5vh + 10px);
   padding-left: 20px;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -168,6 +175,7 @@
 .messages {
   display: flex;
   flex-direction: column;
+  margin-bottom: 3vh;
 }
 
 .user-name {
@@ -178,6 +186,7 @@
 
 .my-messages {
   display: flex;
+  margin-bottom: 3vh;
 }
 
 .delete-message-btn {
@@ -217,7 +226,7 @@
   margin-left: auto;
 }
 
-.box-left:before {
+/* .box-left:before {
   position: absolute;
   top: 3px;
   left: 3px;
@@ -225,9 +234,9 @@
   height: 100%;
   border: 1px solid grey;
   content: "";
-}
+} */
 
-.box-right:before {
+/* .box-right:before {
   position: absolute;
   top: 3px;
   right: 3px;
@@ -235,7 +244,7 @@
   height: 100%;
   border: 1px solid grey;
   content: "";
-}
+} */
 
 #no-message {
   padding-top: 54px;
@@ -254,8 +263,9 @@
 
 .typing-box-wrapper {
   position: fixed;
+  left: 55vh;
   bottom: 4vh;
-  width: 80%;
+  width: 60%;
   height: 15vh;
   background-color: var(--snow);
   background-size: contain;
@@ -267,7 +277,7 @@
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   height: 80%;
-  width: 80%;
+  width: 100%;
   margin: auto 1rem;
   position: relative;
   background-color: #ecf0f0;

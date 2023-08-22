@@ -13,7 +13,7 @@
       <div class="tulip">
         <img
         class="growth"
-        src="{{ url_for('static',filename='img/tulip.png') }}"
+        src="{{ url_for('static',filename='img/growing1.png') }}"
         width="192"
         height="360"
         alt="チューリップ"
@@ -25,6 +25,7 @@
     </div>
     <div class="scoop">
       <img
+      class="scoop-img"
         src="{{ url_for('static',filename='img/scoop.png') }}"
         alt="スコップ"
         width="64"
@@ -66,12 +67,13 @@
             ></ion-icon>
           </button>
         </form>
+        </div>
         {% else %}
-      </div>
       <div class="messages">
         <p class="user-name">{{ message.user_name }}</p>
         <p class="box box-left">{{ message.message }}</p>
       </div>
+    </div>
       {% endif %} {% endfor %} {% else %}
       <div id="no-message"><p>No Message</p></div>
       {% endif %}
@@ -112,10 +114,6 @@
 </script>
 <script
   src="{{url_for('static',filename='js/alarm.js')}}"
-  type="text/javascript"
-></script>
-<script
-  src="{{url_for('static',filename='js/watering-can.js')}}"
   type="text/javascript"
 ></script>
 <script
