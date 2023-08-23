@@ -23,47 +23,74 @@ const phase1 = "/static/img/growing1.png";
 const phase2 = "/static/img/growing2.png";
 const phase3 = "/static/img/growing3.png";
 const phase4 = "/static/img/growing4.png";
-const phase5 = "/static/img/tulip.png";
+
+const redFlower = "/static/img/tulip-red.png";
+const orangeFlower = "/static/img/tulip-orange.png";
+const pinkFlower = "/static/img/tulip-pink.png";
+const yellowFlower = "/static/img/tulip-yellow.png";
+const purpleFlower = "/static/img/tulip-purple.png";
+
+// 植木鉢付きのお花と植木鉢なしのお花を管理
+flowerImgs = [
+  {
+    "/static/img/tulip-red.png": "/static/img/tulip-red-normal.png",
+  },
+  {
+    "/static/img/tulip-orange.png": "/static/img/tulip-orange-normal.png",
+  },
+  {
+    "/static/img/tulip-pink.png": "/static/img/tulip-pink-normal.png",
+  },
+  {
+    "/static/img/tulip-yellow.png": "/static/img/tulip-yellow-normal.png",
+  },
+  {
+    "/static/img/tulip-purple.png": "/static/img/tulip-purple-normal.png",
+  },
+];
+
+const random = Math.floor(Math.random() * flowerImgs.length);
+
+const flowerKey = flowerImgs[random]
+
+
 
 // 本当は、送信ボタンを押した時にジョウロが作動して欲しかったが、リロードが入るため断念。
 // 代わりに会話回数を保持して、会話回数の判定が一定であれば、ジョウロが作動するようにする。
 // ジョウロが3回作動すれば、お花の1段階成長する
 
 // ジョウロの作動回数をローカルストレージで保持するためのカウント
-let wateringCanCount = 0
+let wateringCanCount = 0;
 
 const wateringCan = document.querySelector(".watering-can");
 
-function flowerGrowth () {
+function flowerGrowth() {
   // ローカルストレージから、ジョウロの作動回数を取得する。
   let getWateringCanCount = Number(localStorage.getItem("wateringCanCount"));
   console.log(getWateringCanCount);
   if (getWateringCanCount >= 3 && getWateringCanCount <= 6) {
-    growth.src = phase2
+    growth.src = phase2;
     console.log(growth.src);
-  }else if (getWateringCanCount >= 6 && getWateringCanCount <= 9) {
-    growth.src = phase3
+  } else if (getWateringCanCount >= 6 && getWateringCanCount <= 9) {
+    growth.src = phase3;
     console.log(growth.src);
-  }else if (getWateringCanCount >=9 && getWateringCanCount <= 12) {
-    growth.src = phase4
+  } else if (getWateringCanCount >= 9 && getWateringCanCount <= 12) {
+    growth.src = phase4;
     console.log(growth.src);
-  }else if (getWateringCanCount >= 12) {
-    growth.src = phase5
-    console.log(growth.src);
-    scoopImg.style.display = "block"
+  } else if (getWateringCanCount >= 12) {
+    growth.src = Object.keys(flowerKey)
+    scoopImg.style.display = "block";
   } else {
-    growth.src = phase1
+    growth.src = phase1;
   }
 }
 
 const wateringCanClick = () => {
-    let timerId = null;
+  let timerId = null;
   showWateringCan();
-  wateringCanCount++
-  localStorage.setItem('wateringCanCount', wateringCanCount)
-//   console.log(localStorage.getItem('wateringCanCount'));
-  flowerGrowth()
-
+  wateringCanCount++;
+  localStorage.setItem("wateringCanCount", wateringCanCount);
+  flowerGrowth();
 };
 
 // ジョウロを5秒だけ表示
@@ -74,29 +101,31 @@ function showWateringCan() {
 }
 
 function closeWateringCan() {
-//   wateringCan.style = "opacity:0";
-    // wateringCan.style = "opacity:1";
+  //   wateringCan.style = "opacity:0";
+  // wateringCan.style = "opacity:1";
   setTimeout((e) => {
     //  0.5秒後にクラスactiveを削除
     wateringCan.classList.remove("active");
-    wateringCan.style = "transition: all 2s;"
+    wateringCan.style = "transition: all 2s;";
   }, 1000);
   clearTimeout(timerId); // タイマーを終了
 }
 
-const addMessageBtn = document.getElementById("add-message-btn")
+const addMessageBtn = document.getElementById("add-message-btn");
 addMessageBtn.addEventListener("click", wateringCanClick);
-
 
 // スコップボタンを押したら、お花をホームの花壇に植え替える機能
 
-const scoop = document.querySelector(".scoop")
-const scoopImg = document.querySelector(".scoop-img")
+const scoop = document.querySelector(".scoop");
+const scoopImg = document.querySelector(".scoop-img");
 
-function repotting () {
-  let tergetFlower = growth.src
-  growth.src = phase1
-  scoopImg.style = "box-shadow: none"
+let repottingFlg = false;
+function repotting() {
+  repottingFlg = true;
+  localStorage.setItem("ripottingFlg", repottingFlg)
+  localStorage.setItem("flower", Object.values(flowerKey));
+  growth.src = phase1;
+  scoopImg.style = "box-shadow: none";
 }
 
-scoop.addEventListener("click", repotting)
+scoop.addEventListener("click", repotting);

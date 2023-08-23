@@ -2,9 +2,8 @@
 
 const bed = document.querySelector(".bed-obj");
 const flowerBed = document.querySelector(".flower-bed");
-const tulipYellow = "/static/img/tulip-yellow.png";
 
-// スコップボタンを押したら、img要素を生成する。連番でクラスを振り管理する
+// お花の植え替え回数をidで記録
 let flowerId = 0;
 let flowerPosition = 0;
 
@@ -13,7 +12,7 @@ let flowerBottom = 16;
 let flowerLeft = 40;
 
 let flowerGenerateTurn = 14;
-function flowerGenerator(tergetFlower) {
+function flowerGenerator() {
   flowerGenerateTurn -= 1;
   flowerId += 1;
 
@@ -41,16 +40,25 @@ function flowerGenerator(tergetFlower) {
   
   // bottom: 13rem ~ 15;
   // left: 30rem ~ 56rem;
+  console.log(localStorage.getItem('flower'));
+  let img = localStorage.getItem('flower')
   console.log(flowerRect);
   newFlower.classList.add("new-flower", flowerId);
   newFlower.style.bottom = `${flowerBottom}rem`;
   newFlower.style.left = `${flowerLeft}rem`
-  newFlower.src = tergetFlower; // 画像パス
-  newFlower.alt = "新しいお花"; // 代替テキスト
+  newFlower.src = img; // 画像パス
+  newFlower.alt = 'お花'; // 代替テキスト
   newFlower.width = 96; // 横サイズ（px）
   newFlower.height = 96; // 縦サイズ（px）
   flowerBed.parentNode.insertBefore(newFlower, flowerBed);
 }
-bed.addEventListener("click", flowerGenerator);
+
+// let isRepotting = localStorage.getItem("repottingFlg")
+
+// if (isRepotting) {
+//   flowerGenerator()
+// }
+
+scoop.addEventListener("click", flowerGenerator);
 
 // bed.appendChild(phase5)
