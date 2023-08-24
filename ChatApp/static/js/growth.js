@@ -80,6 +80,7 @@ function flowerGrowth() {
   } else if (getWateringCanCount >= 12) {
     growth.src = Object.keys(flowerKey)
     scoopImg.style.display = "block";
+    getWateringCanCount = 0;
   } else {
     growth.src = phase1;
   }
@@ -124,6 +125,7 @@ function repotting() {
   repottingFlg = true;
   localStorage.setItem("ripottingFlg", repottingFlg)
   localStorage.setItem("flower", Object.values(flowerKey));
+  localStorage.setItem("wateringCanCount", 0)
   growth.src = phase1;
   scoopImg.style = "box-shadow: none";
 }

@@ -75,7 +75,8 @@
 .watering-can {
   transform: translateX(-100%);
   object-fit: cover;
-  height: 10rem;
+  position: relative;
+  top: 8rem;
 }
 
 .watering-can.active {
@@ -100,7 +101,9 @@
 
 .tulip {
   margin: 0 0 0 1rem;
-  padding: 0 0rem 0 3rem;
+  padding: 8rem 0 0 3rem;
+  position: relative;
+  bottom: -2rem;
 }
 
 .scoop-img {
