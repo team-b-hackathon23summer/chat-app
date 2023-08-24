@@ -3,7 +3,7 @@ DROP USER 'testuser';
 
 CREATE USER 'testuser' IDENTIFIED BY 'testuser';
 CREATE DATABASE chatapp;
-USE chatapp
+USE chatapp;
 GRANT ALL PRIVILEGES ON chatapp.* TO 'testuser';
 
 CREATE TABLE users (
@@ -38,13 +38,13 @@ CREATE TABLE flowers (
     id serial PRIMARY KEY,
     cid integer REFERENCES channels(id),
     count integer UNSIGNED
-)
+);
 
 CREATE TABLE flowerbeds (
     id serial PRIMARY KEY,
     uid integer REFERENCES users(uid),
     count integer UNSIGNED
-)
+);
 
 INSERT INTO users(uid, user_name, email, password)VALUES('970af84c-dd40-47ff-af23-282b72b7cca8','テスト','test@gmail.com','37268335dd6931045bdcdf92623ff819a64244b53d0e746d438797349d4da578');
 INSERT INTO channels(id, uid, name, abstract)VALUES(1, '970af84c-dd40-47ff-af23-282b72b7cca8','ぼっち部屋','テストさんの孤独な部屋です');

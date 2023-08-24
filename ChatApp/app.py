@@ -125,7 +125,7 @@ def add_channel():
         error = '既に同じ名前のチャンネルが存在しています'
         return render_template('error/error.html', error_message=error)
 
-@app.route('/', methods=['POST'])
+@app.route('/alarm', methods=['POST'])
 @login_required
 def set_alarm():
     uid = session.get("uid")

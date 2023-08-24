@@ -197,10 +197,17 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = 'SELECT alarm FROM alarms WHERE uid=%s'
+            sql = 'SELECT count(alarm) FROM alarms WHERE uid=%s'
             cur.execute(sql, (uid))
-            alarm_time = conn.fetchone()
-            return alarm_time
+            alarm_count = cur.fetchone()
+            if alarm_count == 0:
+                alarm_time = "22:00"
+                return alarm_time
+            else:
+                sql = 'SELECT alarm FROM alarms WHERE uid=%s'
+                cur.execute(sql, (uid))
+                alarm_time = cur.fetchone()
+                return alarm_time
         except Exception as e:
             print(e + 'が発生しています')
             abort(500)
@@ -240,7 +247,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = 'DELETE FROM alarms uid=%s'
+            sql = 'DELETE FROM alarms WHERE uid=%s'
             cur.execute(sql, (uid))
             conn.commit()
         except Exception as e:
@@ -253,10 +260,17 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = 'SELECT count FROM flowers WHERE cid=%s'
+            sql = 'SELECT count(count) FROM flowers WHERE cid=%s'
             cur.execute(sql, (cid))
-            flower_count = conn.fetchone()
-            return flower_count
+            flower_columns = cur.fetchone()
+            if flower_columns == 0:
+                flower_count = 0
+                return flower_count
+            else:
+                sql = 'SELECT count FROM flowers WHERE cid=%s'
+                cur.execute(sql, (cid))
+                flower_count = cur.fetchone()
+                return flower_count
         except Exception as e:
             print(e + 'が発生しています')
             abort(500)
@@ -293,7 +307,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = 'DELETE FROM flowers cid=%s'
+            sql = 'DELETE FROM flowers WHERE cid=%s'
             cur.execute(sql, (cid))
             conn.commit()
         except Exception as e:
@@ -306,10 +320,17 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = 'SELECT count FROM flowerbets WHERE uid=%s'
+            sql = 'SELECT count(count) FROM flowerbeds WHERE uid=%s'
             cur.execute(sql, (uid))
-            flowerbed_count = conn.fetchone()
-            return flowerbed_count
+            flowerbed_columns = cur.fetchone()
+            if flowerbed_columns == 0:
+                flowerbed_count = 0
+                return flowerbed_count
+            else:
+                sql = 'SELECT count FROM flowerbeds WHERE uid=%s'
+                cur.execute(sql, (uid))
+                flowerbed_count = cur.fetchone()
+                return flowerbed_count
         except Exception as e:
             print(e + 'が発生しています')
             abort(500)
@@ -320,7 +341,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = 'INSERT INTO flowerbets (uid, count) VALUES(%s, %s)'
+            sql = 'INSERT INTO flowerbeds (uid, count) VALUES(%s, %s)'
             cur.execute(sql, (uid, count))
             conn.commit()
         except Exception as e:
@@ -346,7 +367,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = 'DELETE FROM flowers uid=%s'
+            sql = 'DELETE FROM flowerbeds WHERE uid=%s'
             cur.execute(sql, (uid))
             conn.commit()
         except Exception as e:
