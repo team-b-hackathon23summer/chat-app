@@ -1,8 +1,14 @@
+@font-face {
+	font-family: "Boku2b";/*要素に指定するときに使うフォント名*/
+	src:url("font/WebSubset-Boku2b.woff") format('woff');/*先に記述するほど優先度高*/
+	font-display: swap;
+}
+
 * {
   float: none;
   position: static;
-  font-family: "M PLUS 1", sans-serif;
-  font-family: "League Spartan", sans-serif;
+  font-family: "Boku2b","M PLUS 1", sans-serif;
+  font-family: "Boku2b","League Spartan", sans-serif;
   font-size: 16px;
   box-sizing: border-box;
 }

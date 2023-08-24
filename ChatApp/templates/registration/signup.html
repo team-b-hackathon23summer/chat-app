@@ -1,10 +1,10 @@
 {% extends 'registration/base.html' %} {% block title %}
-<title>signup</title>
+<title>新規登録</title>
 {% endblock %} {% block body %}
 <div class="registration-tab">
   <ul class="tab__menu">
     <li class="tab__menu-item" data-tab="01"><a href="{{ url_for('login') }}">login</a></li>
-    <li class="tab__menu-item is-active" data-tab="02"><a href="{{ url_for('signup') }}">signup</a></li>
+    <li class="tab__menu-item is-active" data-tab="02"><a href="{{ url_for('signup') }}">新規登録</a></li>
   </ul>
   <div class="tab__panel">
     <div class="tab__panel-box tab__panel-box001" data-panel="01">
@@ -13,7 +13,7 @@
         <div class="registration-form-wrapper">
           <form class="registration-form" method="post">
             <div>
-              <label for="email-input">Email</label>
+              <label for="email-input">メールアドレス</label>
               <input
                 type="text"
                 placeholder="Email"
@@ -22,7 +22,7 @@
               />
             </div>
             <div>
-              <label for="password-input">Password</label>
+              <label for="password-input">パスワード</label>
               <input
                 type="password"
                 placeholder="Password"
@@ -38,7 +38,7 @@
                 {% endfor %}
               </ul>
               {% endif %} {% endwith %}
-              <button class="registration-button pink">LOGIN</button>
+              <button class="registration-button pink">ログイン</button>
                 登録はこちら
               </a>
             </div>
@@ -52,7 +52,7 @@
         <div class="registration-form-wrapper">
           <form class="registration-form signup" method="post">
             <div>
-              <label for="signup-name-input">Name</label>
+              <label for="signup-name-input">ユーザーネーム</label>
               <input
                 type="text"
                 placeholder="Name"
@@ -61,7 +61,7 @@
               />
             </div>
             <div>
-              <label for="signup-email-input">Email</label>
+              <label for="signup-email-input">メールアドレス</label>
               <input
                 type="text"
                 placeholder="Email"
@@ -70,7 +70,7 @@
               />
             </div>
             <div>
-              <label for="signup-password-input">Password</label>
+              <label for="signup-password-input">パスワード</label>
               <input
                 type="password"
                 placeholder="Password"
@@ -80,7 +80,7 @@
             </div>
             <div>
               <label for="signup-password-confirmation-input">
-                Password Confirmation
+                パスワード（再入力）
               </label>
               <input
                 type="password"
@@ -97,7 +97,7 @@
                 {% endfor %}
               </ul>
               {% endif %} {% endwith %}
-              <button class="registration-button pink">SIGN UP</button>
+              <button class="registration-button pink">新規登録</button>
             </div>
           </form>
         </div>
