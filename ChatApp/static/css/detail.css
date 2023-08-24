@@ -74,9 +74,9 @@
 
 .watering-can {
   transform: translateX(-100%);
-  object-fit: cover;
+  object-fit: contain;
   position: relative;
-  top: 8rem;
+  top: 14rem;
 }
 
 .watering-can.active {
