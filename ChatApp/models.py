@@ -197,9 +197,10 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = 'SELECT FROM alarms WHERE uid=%s'
+            sql = 'SELECT alarm FROM alarms WHERE uid=%s'
             cur.execute(sql, (uid))
-            conn.commit()
+            alarm_time = conn.fetchone()
+            return alarm_time
         except Exception as e:
             print(e + 'が発生しています')
             abort(500)
@@ -240,6 +241,112 @@ class dbConnect:
             conn = DB.getConnection()
             cur = conn.cursor()
             sql = 'DELETE FROM alarms uid=%s'
+            cur.execute(sql, (uid))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            abort(500)
+        finally:
+            cur.close()
+
+    def getFlower(cid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = 'SELECT count FROM flowers WHERE cid=%s'
+            cur.execute(sql, (cid))
+            flower_count = conn.fetchone()
+            return flower_count
+        except Exception as e:
+            print(e + 'が発生しています')
+            abort(500)
+        finally:
+            cur.close()
+
+    def setFlower(cid, count):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = 'INSERT INTO flowers (cid, count) VALUES(%s, %s)'
+            cur.execute(sql, (cid, count))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            abort(500)
+        finally:
+            cur.close()
+
+    def updateFlower(cid, count):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = 'UPDATE flowers SET count=%s WHERE cid=%s'
+            cur.execute(sql, (cid, count))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            abort(500)
+        finally:
+            cur.close()
+
+    def deleteFlower(cid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = 'DELETE FROM flowers cid=%s'
+            cur.execute(sql, (cid))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            abort(500)
+        finally:
+            cur.close()
+
+    def getFlowerbed(uid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = 'SELECT count FROM flowerbets WHERE uid=%s'
+            cur.execute(sql, (uid))
+            flowerbed_count = conn.fetchone()
+            return flowerbed_count
+        except Exception as e:
+            print(e + 'が発生しています')
+            abort(500)
+        finally:
+            cur.close()
+
+    def setFlowerbed(uid, count):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = 'INSERT INTO flowerbets (uid, count) VALUES(%s, %s)'
+            cur.execute(sql, (uid, count))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            abort(500)
+        finally:
+            cur.close()
+
+    def updateFlowerbed(uid, count):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = 'UPDATE flowerbeds SET count=%s WHERE uid=%s'
+            cur.execute(sql, (uid, count))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            abort(500)
+        finally:
+            cur.close()
+
+    def deleteFlowerbed(uid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = 'DELETE FROM flowers uid=%s'
             cur.execute(sql, (uid))
             conn.commit()
         except Exception as e:
