@@ -64,24 +64,29 @@ button:hover {
   cursor: pointer;
 }
 
+/*
 button {
   color: var(--snow);
   border: none;
   padding: 0.7em 3em;
   letter-spacing: 0.1rem;
 }
+*/
 
 :hover {
   transition: all 0.5s;
 }
 
+/*
 button.pink {
-  background-color: var(--salmon_pink);
+  background-color: var(--green2);
 }
+
 
 button.pink:hover {
   background-color: var(--middle_pink);
 }
+*/
 
 /* .main-container {
   min-height: 100vh;

@@ -72,13 +72,13 @@
   }
 }
 .logo-area > img {
-  width: 70%;
+  width: 60%;
   height: auto;
   max-width: 60vw;
   max-height: 60vh;
   object-fit: contain;
-  padding: auto;
-  border-radius: 30px;
+  border-radius: 40px;
+  margin: auto;
 }
 
 @media (max-width: 768px) {
@@ -214,8 +214,18 @@
 }
 
 .registration-button {
-  width: 100%;
+  /*width: 100%;
   margin-bottom: 12px;
+  background-color: var(--green2);
+  */
+  color: var(--green4);
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: var(--green2);
+  text-align: center;
+  border: solid 2px var(--navyblue);
+  box-shadow: 0px 1px 4px gray;
 }
 
 .switch-register-mode {
