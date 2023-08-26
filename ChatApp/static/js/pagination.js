@@ -82,7 +82,7 @@ const pagination = async () => {
         channelDescriptionTooltip.appendChild(li);
         const tooltipBody = document.createElement("div");
         tooltipBody.classList.add("tooltip-body");
-        tooltipBody.innerHTML = channel.abstract;
+        // tooltipBody.innerHTML = channel.abstract;
         channelDescriptionTooltip.appendChild(tooltipBody);
         ul.appendChild(channelDescriptionTooltip);
       } else {
