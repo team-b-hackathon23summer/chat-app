@@ -106,7 +106,8 @@ def index():
     uid = session.get("uid")
     channels = dbConnect.getChannelAll()
     channels.reverse()
-    return render_template('index.html', channels=channels, uid=uid)
+    flowerbed_count = dbConnect.getFlowerbed(uid)
+    return render_template('index.html', channels=channels, uid=uid, flowerbed_count=flowerbed_count)
 
 
 # チャンネルの追加
@@ -124,7 +125,20 @@ def add_channel():
         error = '既に同じ名前のチャンネルが存在しています'
         return render_template('error/error.html', error_message=error)
 
+@app.route('/alarm', methods=['POST'])
+@login_required
+def set_alarm():
+    uid = session.get("uid")
+    alarm_time = dbConnect.getAlarm(uid)
+    set_alarm_time = request.form.get('pets')
+    if alarm_time == None:
+        dbConnect.setAlarm(uid, set_alarm_time)
+        return redirect('/')
+    else:
+        dbConnect.updateAlarm(uid, set_alarm_time)
+        return redirect('/')
 
+"""
 # チャンネルの更新
 @app.route('/update_channel', methods=['POST'])
 @login_required
@@ -136,7 +150,7 @@ def update_channel():
 
     dbConnect.updateChannel(uid, channel_name, channel_description, cid)
     return redirect('/detail/{cid}'.format(cid = cid))
-
+"""
 
 # チャンネルの削除
 @app.route('/delete/<cid>')
@@ -161,8 +175,9 @@ def detail(cid):
     cid = cid
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)
-
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+    alarm_time = dbConnect.getAlarm(uid)
+    flower_count = dbConnect.getFlower(cid)
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid, alarm_time=alarm_time, flower_count=flower_count)
 
 """
 # メッセージの投稿
