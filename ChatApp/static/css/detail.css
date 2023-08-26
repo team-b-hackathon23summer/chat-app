@@ -279,7 +279,7 @@
   /* bottom: 4vh; */
   width: 100%;
   height: 15vh;
-  background-color: var(--snow);
+  
   background-size: contain;
   /* border-top: 3px solid lightgrey; */
   display: flex;

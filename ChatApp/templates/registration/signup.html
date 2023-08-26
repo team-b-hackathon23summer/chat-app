@@ -3,7 +3,7 @@
 {% endblock %} {% block body %}
 <div class="registration-tab">
   <ul class="tab__menu">
-    <li class="tab__menu-item" data-tab="01"><a href="{{ url_for('login') }}">login</a></li>
+    <li class="tab__menu-item" data-tab="01"><a href="{{ url_for('login') }}">ログイン</a></li>
     <li class="tab__menu-item is-active" data-tab="02"><a href="{{ url_for('signup') }}">新規登録</a></li>
   </ul>
   <div class="tab__panel">
@@ -39,7 +39,6 @@
               </ul>
               {% endif %} {% endwith %}
               <button class="registration-button">ログイン</button>
-                登録はこちら
               </a>
             </div>
           </form>

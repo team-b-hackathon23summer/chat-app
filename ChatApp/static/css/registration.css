@@ -79,6 +79,7 @@
   object-fit: contain;
   border-radius: 40px;
   margin: auto;
+  box-shadow: 1px 2px 4px gray;
 }
 
 @media (max-width: 768px) {
@@ -190,33 +191,34 @@
 }
 
 .registration-form input {
-  border: solid 2px lightgrey;
+  border: solid 2px var(--navyblue);
   outline: none;
   margin-bottom: 10px;
   line-height: 32px;
   width: 100%;
   padding: 0.2rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0px 1px 4px gray;
 }
 
 .registration-form input::placeholder {
   color: lightgrey;
 }
 
-.registration-form input:focus {
+/*.registration-form input:focus {
   border: 2px var(--navy_blue) solid;
   background-color: var(--navy_blue);
   color: var(--snow);
 }
+*/
 
 .registration-form label {
-  font-size: 12px;
-  color: var(--navy_blue);
+  font-size: 16px;
+  color: var(--navyblue);
 }
 
 .registration-button {
   /*width: 100%;
-  margin-bottom: 12px;
-  background-color: var(--green2);
   */
   color: var(--green4);
   width: 100px;
@@ -226,6 +228,7 @@
   text-align: center;
   border: solid 2px var(--navyblue);
   box-shadow: 0px 1px 4px gray;
+  margin-bottom: 12px;
 }
 
 .switch-register-mode {

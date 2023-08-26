@@ -22,7 +22,7 @@
   padding: 8px 0; /* メニューに高さを付ける */
   margin: 0;
   text-align: center;
-  background-color: #e8f9d4;
+  background-color: var(--green2);
   color: #5dab73;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -80,9 +80,16 @@
   background: #5dab73;
 }
 
+.icon-image {
+  vertical-align: middle; /* 上下中央寄せ */
+  /* 画像のサイズ */
+  width: 30px;
+  height: auto;
+  }
+
 .title {
   color: var(--navyblue);
-  font-weight: bold;
+  vertical-align: middle; /* 上下中央寄せ */
 }
 
 /* is-showがついている時のスタイル */
