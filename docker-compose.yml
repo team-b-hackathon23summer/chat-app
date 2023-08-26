@@ -55,10 +55,10 @@ services:
     # コマンドを実行
     command:  bash -c "gunicorn -w 1 -k eventlet -b 0.0.0.0:5000 'wsgi:app'"
     # 先にdbを起動してからappを起動する
-    depends_on:
-      db:
-        # dbのヘルスチェックが終わってからappを起動させる
-        condition: service_healthy
+    # depends_on:
+    #   db:
+    #     # dbのヘルスチェックが終わってからappを起動させる
+    #     condition: service_healthy
   
   nginx:
     # コンテナ名をNginxに設定
@@ -80,5 +80,5 @@ services:
       # Nginxを起動する前にappサービスを起動する
       - app
 
-volumes:
-  mysql_data:
+# volumes:
+#   mysql_data:
