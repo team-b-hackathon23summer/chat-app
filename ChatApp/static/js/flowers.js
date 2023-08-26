@@ -12,7 +12,11 @@ let flowerBottom = 16;
 let flowerLeft = 40;
 
 let flowerGenerateTurn = 14;
-let flowerStorageMaster = JSON.parse(localStorage.getItem("flowers"))
+
+// フラワーストレージのマスターデータ
+let flowerStorageMaster
+// フラワーストレージがnullだったら、parseせず、nullを返す
+flowerStorageMaster = JSON.parse(localStorage.getItem("flowers")) ?? ""
 
 function flowerGenerator() {
   flowerGenerateTurn -= 1;
@@ -39,18 +43,19 @@ function flowerGenerator() {
 
   // bottom: 13rem ~ 15;
   // left: 30rem ~ 56rem;
-
-  const newFlower = document.createElement("img");
   // let flowerRect = newFlower.getBoundingClientRect()
   // console.log(flowerRect);
 
   console.log(localStorage.getItem("flower"));
   let flower = localStorage.getItem("flower");
 
+  // 現在の植えているお花と新しく植えたお花を保存
   let flowerStorageSlave = [...flowerStorageMaster, flower];
   localStorage.setItem("flowers", JSON.stringify(flowerStorageSlave));
   console.log(flowerStorageSlave);
 
+  flowerStorageSlave.map((flower) => {
+  const newFlower = document.createElement("img");
   newFlower.classList.add("new-flower", flowerId);
   newFlower.style.bottom = `${flowerBottom}rem`;
   newFlower.style.left = `${flowerLeft}rem`;
@@ -59,12 +64,22 @@ function flowerGenerator() {
   newFlower.width = 96; // 横サイズ（px）
   newFlower.height = 96; // 縦サイズ（px）
   flowerBed.parentNode.insertBefore(newFlower, flowerBed);
+  console.log(flower);
+})
 }
 
 // let isRepotting = localStorage.getItem("repottingFlg")
 
 // if (isRepotting) {
 //   flowerGenerator()
+// }
+
+// 植え替えされているかのフラグ
+let rFlg = localStorage.getItem("repottingFlg")
+
+console.log(rFlg);
+// if (condition) {
+  
 // }
 
 bed.addEventListener("click", flowerGenerator);

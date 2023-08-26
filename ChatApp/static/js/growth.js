@@ -131,12 +131,11 @@ fs = JSON.parse(localStorage.getItem("flowers"))
 console.log(fs);
 function repotting() {
   repottingFlg = true;
-  localStorage.setItem("ripottingFlg", repottingFlg)
+  localStorage.setItem("repottingFlg", repottingFlg)
   localStorage.setItem("flower", Object.values(flowerKey));
   localStorage.setItem("wateringCanCount", 0)
   growth.src = phase1;
   scoopImg.style = "box-shadow: none";
-  localStorage.setItem("flowers", JSON.stringify(fs))
 }
 
 scoop.addEventListener("click", repotting);
