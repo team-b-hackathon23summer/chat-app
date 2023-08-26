@@ -4,12 +4,13 @@
   width: 50%;
   text-align: center;
   padding: 5px;
-  margin: 0 0 -3rem;
-  /* 角丸の設定 */
   border-radius: 20px;
   align-self: center;
-  display: none;
+  /* display: none; */
+  top: 18rem;
+  left: 2rem;
   transition: all 2s;
+
 }
 
 .alarm::before {
