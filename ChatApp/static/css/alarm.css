@@ -6,7 +6,7 @@
   padding: 5px;
   border-radius: 20px;
   align-self: center;
-  /* display: none; */
+  display: none;
   top: 18rem;
   left: 2rem;
   transition: all 2s;
