@@ -45,9 +45,9 @@ function flowerGenerator() {
   console.log(localStorage.getItem("flower"));
   let flower = localStorage.getItem("flower");
 
-  let flowerStorageSlave = [...flowerStorageMaster];
+  let flowerStorageSlave = [...flowerStorageMaster] ?? []
   console.log(flowerStorageSlave);
-  
+
   // ロード時に植え替えフラグがtrue かつ フラワーストレージにお花があれば、花壇の花を増やす。
   if (rFlg === true && nFlg === false) {
     // 現在の植えているお花と新しく植えたお花を保存
