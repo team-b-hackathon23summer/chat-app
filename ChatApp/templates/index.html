@@ -52,24 +52,30 @@
           <ul class="menu-box">
             <li class="list">
               <a class="alarm-link" href="#">
+                <!--
                 <span class="icon"
                   ><ion-icon
                     background="#5DAB73"
                     name="alarm-outline"
                   ></ion-icon
                 ></span>
+                -->
+                <img class="icon-image" alt="alarm" src="../../static/img/alarm.png" />
                 <span class="title">おやすみ設定</span>
               </a>
             </li>
             <li class="list">
               <a href="{{ url_for('logout') }}">
+                <!--
                 <span class="icon"
                   ><ion-icon
                     background="#5dab73"
                     name="log-out-outline"
                   ></ion-icon
                 ></span>
-                <span class="title">Log out</span>
+                -->
+                <img class="icon-image" alt="alarm" src="../../static/img/logout.png" />
+                <span class="title">ログアウト</span>
               </a>
             </li>
           </ul>
@@ -85,9 +91,11 @@
       height="360"
     />
   </div>
+  <!--
   <div id="footer">
     <p id="footer-text">PLAUDERN FROM RARETECH</p>
   </div>
+-->
 
   {% include 'modal/add-channel.html' %} {% include 'modal/delete-channel.html'
   %}
