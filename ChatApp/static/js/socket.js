@@ -8,14 +8,23 @@ socket.on('message', function(data) {
   let messageArea = document.getElementById('message-area');
 
   let messageBox = document.createElement('div');
-  if (data.uid == uid) {
+  if (data.uid === uid) {
     messageBox.className = 'my-messages';
     let messageText = document.createElement('p');
     messageText.className = 'box box-right';
     messageText.textContent = data.message;
     messageBox.appendChild(messageText);
-    // let deleteButton = document.createElement('');
-    // deleteButton.className = 'delete-message-button';
+    //deleteボタン追加
+    let deleteButton = document.createElement('button');
+    deleteButton.className = 'delete-message-btn';
+    deleteButton.setAttribute('name', 'message_id');
+    deleteButton.value = data.id;
+
+    let icon = document.createElement('ion-icon');
+    icon.setAttribute('name', 'trash-bin-outline');
+    icon.style.color = '#122543';
+    deleteButton.appendChild(icon);
+    messageBox.appendChild(deleteButton);
   } else {
     messageBox.className = 'messages';
     let userName = document.createElement('p');
@@ -28,6 +37,12 @@ socket.on('message', function(data) {
     messageBox.appendChild(messageText);
   }
   messageArea.appendChild(messageBox);
+
+//メッセージが送信されたら、下までスクロール
+      setTimeout(function() {
+        const messageArea = document.getElementById("message-area");
+        messageArea.scrollTop = messageArea.scrollHeight;
+    }, 0);
 });
 
 document.newMessageForm.onsubmit = function(e) {
