@@ -17,10 +17,15 @@ let flowerGenerateTurn = 14;
 // フラワーストレージのマスターデータ
 let flowerStorageMaster;
 // フラワーストレージがnullだったら、parseせず、nullを返す。 初回は、nullなので必要。
-flowerStorageMaster = JSON.parse(localStorage.getItem("flowers")) ?? ""
+flowerStorageMaster = JSON.parse(localStorage.getItem("flowers")) ?? "";
+console.log(flowerStorageMaster);
 
+// 植え替えされているかのフラグ
+let rFlg = JSON.parse(localStorage.getItem("repottingFlg"));
+let nFlg = JSON.parse(localStorage.getItem("noFlowerFlg"));
+let wccc = localStorage.getItem("wateringCanCount");
 
-function flowerGenerateTurnCounter () {
+function flowerGenerateTurnCounter() {
   if (flowerGenerateTurn > 0) {
     // お花の生成位置をずらす 3remずつの配置がちょうど良い。
     // 一列に8束ほどなので、3 * 8 = 24remプラスとなる...
@@ -37,82 +42,41 @@ function flowerGenerateTurnCounter () {
 function flowerGenerator() {
   flowerId += 1;
 
-  // if (flowerGenerateTurn > 0) {
-  //   // お花の生成位置をずらす 3remずつの配置がちょうど良い。
-  //   // 一列に8束ほどなので、3 * 8 = 24remプラスとなる...
-  //   flowerLeft += 3;
-  //   if (flowerLeft > 40 + 24) {
-  //     flowerBottom -= 2;
-  //     flowerLeft -= 27;
-  //   }
-  //   // 二段目の生成位置をいい感じにずらします。
-  //   flowerLeft += 3;
-  // }
-
-  // for(let i = 13; i <= 15; i++) {
-  //   flowerBottom = i;
-  //   for(let j = 30; j <= 56; j++) {
-  //     flowerLeft = j;
-  //   }
-  // }
-
-  // bottom: 13rem ~ 15;
-  // left: 30rem ~ 56rem;
-  // let flowerRect = newFlower.getBoundingClientRect()
-  // console.log(flowerRect);
-
   console.log(localStorage.getItem("flower"));
   let flower = localStorage.getItem("flower");
 
-  // 現在の植えているお花と新しく植えたお花を保存
-  let flowerStorageSlave = [...flowerStorageMaster, flower];
-  localStorage.setItem("flowers", JSON.stringify(flowerStorageSlave));
+  let flowerStorageSlave = [...flowerStorageMaster];
   console.log(flowerStorageSlave);
-
-  // お花の生成回数をストレージに入っているお花の数分減らす。
-// for (let i = 0; flowerGenerateTurn >= flowerStorageSlave.length; flowerGenerateTurn--) {
-//   console.log(flowerStorageSlave[i-flowerGenerateTurn-1]);
-// }
+  // ロード時に植え替えフラグがtrue かつ フラワーストレージにお花があれば、花壇の花を増やす。
+  if (rFlg === true && nFlg === false) {
+    // 現在の植えているお花と新しく植えたお花を保存
+    flowerStorageSlave = [...flowerStorageMaster, flower];
+    localStorage.setItem("flowers", JSON.stringify(flowerStorageSlave));
+    console.log(flowerStorageSlave);
+    rFlg = false;
+    localStorage.setItem("repottingFlg", rFlg);
+  }
 
   flowerStorageSlave.map((flower) => {
-  flowerGenerateTurn -= 1;
-  flowerGenerateTurnCounter()
-  const newFlower = document.createElement("img");
-  newFlower.classList.add("new-flower", flowerId);
-  newFlower.style.bottom = `${flowerBottom}rem`;
-  newFlower.style.left = `${flowerLeft}rem`;
-  newFlower.src = flower; // 画像パス
-  newFlower.alt = "お花"; // 代替テキスト
-  newFlower.width = 96; // 横サイズ（px）
-  newFlower.height = 96; // 縦サイズ（px）
-  flowerBed.parentNode.insertBefore(newFlower, flowerBed);
-  console.log(flower);
-})
+    flowerGenerateTurn -= 1;
+    flowerGenerateTurnCounter();
+    const newFlower = document.createElement("img");
+    newFlower.classList.add("new-flower", flowerId);
+    newFlower.style.bottom = `${flowerBottom}rem`;
+    newFlower.style.left = `${flowerLeft}rem`;
+    newFlower.src = flower; // 画像パス
+    newFlower.alt = "お花"; // 代替テキスト
+    newFlower.width = 96; // 横サイズ（px）
+    newFlower.height = 96; // 縦サイズ（px）
+    flowerBed.parentNode.insertBefore(newFlower, flowerBed);
+    console.log(flower);
+  });
 }
-
-// let isRepotting = localStorage.getItem("repottingFlg")
-
-// if (isRepotting) {
-//   flowerGenerator()
-// }
-
-// 植え替えされているかのフラグ
-let rFlg = JSON.parse(localStorage.getItem("repottingFlg"))
-let nFlg = JSON.parse(localStorage.getItem("noFlowerFlg"))
-let wccc = localStorage.getItem("wateringCanCount")
 
 // bed.addEventListener("click", flowerGenerator)
 
-// ロード時に植え替えフラグがtrue かつ フラワーストレージにお花があれば、花壇に咲かす。
-
-if (nFlg === false) {
-  rFlg = true
-}
-
-if (rFlg === true && nFlg === false) {
-  window.addEventListener('load', flowerGenerator)
-  console.log("お花が咲きました");
-}
+window.addEventListener("load", flowerGenerator);
+console.log("お花が咲きました");
 
 // bed.appendChild(phase5)
 
@@ -122,12 +86,9 @@ if (rFlg === true && nFlg === false) {
 //   }
 // );
 
-
-
 /**理想の動作
- * 
+ *
  * ロード時に動作
  * フラワーストレージにある分のお花を横方向に生成する。
- * 
+ *
  */
-
