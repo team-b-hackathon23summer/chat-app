@@ -1,8 +1,14 @@
+@font-face {
+	font-family: "Boku2b";/*要素に指定するときに使うフォント名*/
+	src:url("font/WebSubset-Boku2b.woff") format('woff');/*先に記述するほど優先度高*/
+	font-display: swap;
+}
+
 * {
   float: none;
   position: static;
-  font-family: "M PLUS 1", sans-serif;
-  font-family: "League Spartan", sans-serif;
+  font-family: "Boku2b","M PLUS 1", sans-serif;
+  font-family: "Boku2b","League Spartan", sans-serif;
   font-size: 16px;
   box-sizing: border-box;
 }
@@ -11,7 +17,7 @@ body {
   margin: 0 auto;
   min-height: 100vh;
   width: 100vw;
-  color: var(--carbon);
+  color: var(--navyblue);
 }
 
 img {
@@ -58,24 +64,29 @@ button:hover {
   cursor: pointer;
 }
 
+/*
 button {
   color: var(--snow);
   border: none;
   padding: 0.7em 3em;
   letter-spacing: 0.1rem;
 }
+*/
 
 :hover {
   transition: all 0.5s;
 }
 
+/*
 button.pink {
-  background-color: var(--salmon_pink);
+  background-color: var(--green2);
 }
+
 
 button.pink:hover {
   background-color: var(--middle_pink);
 }
+*/
 
 /* .main-container {
   min-height: 100vh;

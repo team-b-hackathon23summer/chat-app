@@ -105,7 +105,7 @@ def logout():
 def index():
     uid = session.get("uid")
     channels = dbConnect.getChannelAll()
-    channels.reverse()
+    # channels.reverse()
     flowerbed_count = dbConnect.getFlowerbed(uid)
     return render_template('index.html', channels=channels, uid=uid, flowerbed_count=flowerbed_count)
 

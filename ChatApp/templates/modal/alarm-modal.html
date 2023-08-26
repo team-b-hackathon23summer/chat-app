@@ -4,7 +4,7 @@
       <h2>おやすみ設定</h2>
       <span class="modalClose" id="alarm-close-button">×</span>
     </div>
-    <form name="setAlarmForm" class="modal-body" action="/" method="POST">
+    <form name="setAlarmForm" class="modal-body" action="/alarm" method="POST">
       <!-- <p>おやすみ時間</p>
       <input
         type="radio"
@@ -15,10 +15,15 @@
       <label for="alarm-select">おやすみ時間</label>
       <select name="pets" id="alarm-select">
         <option value="">--アラーム時刻を選んでください--</option>
+        <option value="20:00">20:00</option>
+        <option value="20:30">20:30</option>
+        <option value="21:00">21:00</option>
+        <option value="21:30">21:30</option>
         <option value="22:00">22:00</option>
         <option value="22:30">22:30</option>
         <option value="23:00">23:00</option>
         <option value="23:30">23:30</option>
+        <option value="00:00">24:00</option>
       </select>
       <p>
         ※初期設定は２２時です。<br />

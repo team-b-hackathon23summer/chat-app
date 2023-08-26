@@ -149,7 +149,7 @@
 }
 
 .channel-box li a {
-  color: grey;
+  color: var(--navyblue);
   flex-grow: 1;
 }
 

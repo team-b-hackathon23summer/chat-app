@@ -74,8 +74,9 @@
 
 .watering-can {
   transform: translateX(-100%);
-  object-fit: cover;
-  height: 10rem;
+  object-fit: contain;
+  position: relative;
+  top: 10rem;
 }
 
 .watering-can.active {
@@ -99,8 +100,10 @@
 }
 
 .tulip {
-  margin: 0 0 0 1rem;
-  padding: 0 0rem 0 3rem;
+  margin: 0 0 0px 1rem;
+  padding: 4rem 0 0 3rem;
+  position: relative;
+  bottom: -2rem;
 }
 
 .scoop-img {
@@ -216,22 +219,24 @@
   line-height: 1.5;
   letter-spacing: 0.1em;
   white-space: normal;
+  border: 2px solid var(--navyblue);
+  color: var(--navyblue);
+  box-shadow: 0px 1px 4px gray;
 }
 
 .box-left {
-  background-color: rgba(18, 37, 67, 0.2);
-  color: var(--navy_blue);
+  background-color: var(--green1);
+  border-radius: 15px 15px 15px 0px;
 }
 
 .box-right {
-  background-color: rgba(18, 37, 67, 0.4);
-  color: var(--snow);
+  background-color: var(--green3);
+  border-radius: 15px 15px 0px 15px;
   margin-left: auto;
   word-break: break-word;
-  
 }
 
-/* .box-left:before {
+/*.box-left:before {
   position: absolute;
   top: 3px;
   left: 3px;
@@ -274,7 +279,7 @@
   /* bottom: 4vh; */
   width: 100%;
   height: 15vh;
-  background-color: var(--snow);
+  
   background-size: contain;
   /* border-top: 3px solid lightgrey; */
   display: flex;

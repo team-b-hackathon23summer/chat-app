@@ -234,7 +234,7 @@ class dbConnect:
             conn = DB.getConnection()
             cur = conn.cursor()
             sql = 'UPDATE alarms SET alarm=%s WHERE uid=%s'
-            cur.execute(sql, (uid, alarm))
+            cur.execute(sql, (alarm, uid))
             conn.commit()
         except Exception as e:
             print(e + 'が発生しています')
