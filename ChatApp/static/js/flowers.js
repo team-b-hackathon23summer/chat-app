@@ -11,17 +11,16 @@ let flowerPosition = 0;
 let flowerBottom = 16;
 let flowerLeft = 40;
 
+// 花壇に咲くお花は、14本まで
 let flowerGenerateTurn = 14;
 
 // フラワーストレージのマスターデータ
-let flowerStorageMaster
-// フラワーストレージがnullだったら、parseせず、nullを返す
+let flowerStorageMaster;
+// フラワーストレージがnullだったら、parseせず、nullを返す。 初回は、nullなので必要。
 flowerStorageMaster = JSON.parse(localStorage.getItem("flowers")) ?? ""
 
-function flowerGenerator() {
-  flowerGenerateTurn -= 1;
-  flowerId += 1;
 
+function flowerGenerateTurnCounter () {
   if (flowerGenerateTurn > 0) {
     // お花の生成位置をずらす 3remずつの配置がちょうど良い。
     // 一列に8束ほどなので、3 * 8 = 24remプラスとなる...
@@ -33,6 +32,22 @@ function flowerGenerator() {
     // 二段目の生成位置をいい感じにずらします。
     flowerLeft += 3;
   }
+}
+
+function flowerGenerator() {
+  flowerId += 1;
+
+  // if (flowerGenerateTurn > 0) {
+  //   // お花の生成位置をずらす 3remずつの配置がちょうど良い。
+  //   // 一列に8束ほどなので、3 * 8 = 24remプラスとなる...
+  //   flowerLeft += 3;
+  //   if (flowerLeft > 40 + 24) {
+  //     flowerBottom -= 2;
+  //     flowerLeft -= 27;
+  //   }
+  //   // 二段目の生成位置をいい感じにずらします。
+  //   flowerLeft += 3;
+  // }
 
   // for(let i = 13; i <= 15; i++) {
   //   flowerBottom = i;
@@ -54,7 +69,14 @@ function flowerGenerator() {
   localStorage.setItem("flowers", JSON.stringify(flowerStorageSlave));
   console.log(flowerStorageSlave);
 
+  // お花の生成回数をストレージに入っているお花の数分減らす。
+// for (let i = 0; flowerGenerateTurn >= flowerStorageSlave.length; flowerGenerateTurn--) {
+//   console.log(flowerStorageSlave[i-flowerGenerateTurn-1]);
+// }
+
   flowerStorageSlave.map((flower) => {
+  flowerGenerateTurn -= 1;
+  flowerGenerateTurnCounter()
   const newFlower = document.createElement("img");
   newFlower.classList.add("new-flower", flowerId);
   newFlower.style.bottom = `${flowerBottom}rem`;
@@ -75,13 +97,37 @@ function flowerGenerator() {
 // }
 
 // 植え替えされているかのフラグ
-let rFlg = localStorage.getItem("repottingFlg")
+let rFlg = JSON.parse(localStorage.getItem("repottingFlg"))
+let nFlg = JSON.parse(localStorage.getItem("noFlowerFlg"))
+let wccc = localStorage.getItem("wateringCanCount")
 
-console.log(rFlg);
-// if (condition) {
-  
-// }
+// bed.addEventListener("click", flowerGenerator)
 
-bed.addEventListener("click", flowerGenerator);
+// ロード時に植え替えフラグがtrue かつ フラワーストレージにお花があれば、花壇に咲かす。
+
+if (nFlg === false) {
+  rFlg = true
+}
+
+if (rFlg === true && nFlg === false) {
+  window.addEventListener('load', flowerGenerator)
+  console.log("お花が咲きました");
+}
 
 // bed.appendChild(phase5)
+
+// document.addEventListener('DOMContentLoaded',
+//   function(e){
+//     console.log('DOMツリーの解析が終わりました。');
+//   }
+// );
+
+
+
+/**理想の動作
+ * 
+ * ロード時に動作
+ * フラワーストレージにある分のお花を横方向に生成する。
+ * 
+ */
+

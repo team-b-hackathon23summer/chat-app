@@ -69,6 +69,7 @@ function flowerGrowth() {
   let getWateringCanCount = Number(localStorage.getItem("wateringCanCount"));
   console.log(getWateringCanCount);
   if (getWateringCanCount >= 1 && getWateringCanCount <= 2) {
+
     growth.src = phase2;
     console.log(growth.src);
   } else if (getWateringCanCount >= 2 && getWateringCanCount <= 3) {
@@ -125,17 +126,22 @@ const scoop = document.querySelector(".scoop");
 const scoopImg = document.querySelector(".scoop-img");
 
 let repottingFlg = false;
+let noFlowerFlg = true
 // fs -> フラワーストレージ
 let fs = []
 fs = JSON.parse(localStorage.getItem("flowers"))
 console.log(fs);
 function repotting() {
   repottingFlg = true;
+  noFlowerFlg = false;
   localStorage.setItem("repottingFlg", repottingFlg)
+  localStorage.setItem("noFlowerFlg", noFlowerFlg)
   localStorage.setItem("flower", Object.values(flowerKey));
-  localStorage.setItem("wateringCanCount", 0)
+  // localStorage.setItem("wateringCanCount", 0)
   growth.src = phase1;
   scoopImg.style = "box-shadow: none";
+  repottingFlg = false
+  localStorage.setItem("repottingFlg", repottingFlg)
 }
 
 scoop.addEventListener("click", repotting);
