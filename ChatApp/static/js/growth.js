@@ -69,17 +69,16 @@ function flowerGrowth() {
   // ローカルストレージから、ジョウロの作動回数を取得する。
   let getWateringCanCount = Number(localStorage.getItem("wateringCanCount"));
   console.log(getWateringCanCount);
-  if (getWateringCanCount >= 1 && getWateringCanCount <= 2) {
-
+  if (getWateringCanCount >= 1 && getWateringCanCount < 2) {
     growth.src = phase2;
     console.log(growth.src);
-  } else if (getWateringCanCount >= 2 && getWateringCanCount <= 3) {
+  } else if (getWateringCanCount >= 2 && getWateringCanCount < 3) {
     growth.src = phase3;
     console.log(growth.src);
-  } else if (getWateringCanCount >= 3 && getWateringCanCount <= 4) {
+  } else if (getWateringCanCount >= 3 && getWateringCanCount < 4) {
     growth.src = phase4;
     console.log(growth.src);
-  } else if (getWateringCanCount >= 5) {
+  } else if (getWateringCanCount >= 4) {
     growth.src = Object.keys(flowerKey)
     scoopImg.style.display = "block";
   } else {
@@ -88,10 +87,10 @@ function flowerGrowth() {
 }
 
 function wateringCanClick () {
-  if (wateringCanCount >= 5 && repottingFlg === true) {
+  if (wateringCanCount > 5 && noFlowerFlg === false) {
     wateringCanCount = 0
     repottingFlg = false
-
+    growth.src = phase1;
   }
   let timerId = null;
   showWateringCan();
@@ -142,6 +141,8 @@ function repotting() {
   // localStorage.setItem("wateringCanCount", 0)
   growth.src = phase1;
   scoopImg.style = "box-shadow: none";
+  wateringCanCount = 0;
+  localStorage.setItem("wateringCanCount", 0);
 }
 
 scoop.addEventListener("click", repotting);
