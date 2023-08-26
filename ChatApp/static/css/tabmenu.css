@@ -22,7 +22,7 @@
   padding: 8px 0; /* メニューに高さを付ける */
   margin: 0;
   text-align: center;
-  background-color: #e8f9d4;
+  background-color: var(--green3);
   color: #5dab73;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
