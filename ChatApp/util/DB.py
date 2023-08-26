@@ -4,7 +4,7 @@ class DB:
     def getConnection():
         try:
             conn = pymysql.connect(
-            host="db",
+            host="bloom-chatapp-db.catujmyph2zk.ap-northeast-1.rds.amazonaws.com",
             db="chatapp",
             user="testuser",
             password="testuser",
