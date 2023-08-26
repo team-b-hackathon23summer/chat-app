@@ -12,6 +12,8 @@ let flowerBottom = 16;
 let flowerLeft = 40;
 
 let flowerGenerateTurn = 14;
+let flowerStorageMaster = JSON.parse(localStorage.getItem("flowers"))
+
 function flowerGenerator() {
   flowerGenerateTurn -= 1;
   flowerId += 1;
@@ -25,11 +27,8 @@ function flowerGenerator() {
       flowerLeft -= 27;
     }
     // 二段目の生成位置をいい感じにずらします。
-    flowerLeft += 3
+    flowerLeft += 3;
   }
-
-  const newFlower = document.createElement("img");
-  let flowerRect = newFlower.getBoundingClientRect()
 
   // for(let i = 13; i <= 15; i++) {
   //   flowerBottom = i;
@@ -37,17 +36,26 @@ function flowerGenerator() {
   //     flowerLeft = j;
   //   }
   // }
-  
+
   // bottom: 13rem ~ 15;
   // left: 30rem ~ 56rem;
-  console.log(localStorage.getItem('flower'));
-  let img = localStorage.getItem('flower')
-  console.log(flowerRect);
+
+  const newFlower = document.createElement("img");
+  // let flowerRect = newFlower.getBoundingClientRect()
+  // console.log(flowerRect);
+
+  console.log(localStorage.getItem("flower"));
+  let flower = localStorage.getItem("flower");
+
+  let flowerStorageSlave = [...flowerStorageMaster, flower];
+  localStorage.setItem("flowers", JSON.stringify(flowerStorageSlave));
+  console.log(flowerStorageSlave);
+
   newFlower.classList.add("new-flower", flowerId);
   newFlower.style.bottom = `${flowerBottom}rem`;
-  newFlower.style.left = `${flowerLeft}rem`
-  newFlower.src = img; // 画像パス
-  newFlower.alt = 'お花'; // 代替テキスト
+  newFlower.style.left = `${flowerLeft}rem`;
+  newFlower.src = flower; // 画像パス
+  newFlower.alt = "お花"; // 代替テキスト
   newFlower.width = 96; // 横サイズ（px）
   newFlower.height = 96; // 縦サイズ（px）
   flowerBed.parentNode.insertBefore(newFlower, flowerBed);
@@ -59,6 +67,6 @@ function flowerGenerator() {
 //   flowerGenerator()
 // }
 
-scoop.addEventListener("click", flowerGenerator);
+bed.addEventListener("click", flowerGenerator);
 
 // bed.appendChild(phase5)

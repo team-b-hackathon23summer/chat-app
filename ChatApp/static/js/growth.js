@@ -68,30 +68,33 @@ function flowerGrowth() {
   // ローカルストレージから、ジョウロの作動回数を取得する。
   let getWateringCanCount = Number(localStorage.getItem("wateringCanCount"));
   console.log(getWateringCanCount);
-  if (getWateringCanCount >= 3 && getWateringCanCount <= 6) {
+  if (getWateringCanCount >= 1 && getWateringCanCount <= 2) {
     growth.src = phase2;
     console.log(growth.src);
-  } else if (getWateringCanCount >= 6 && getWateringCanCount <= 9) {
+  } else if (getWateringCanCount >= 2 && getWateringCanCount <= 3) {
     growth.src = phase3;
     console.log(growth.src);
-  } else if (getWateringCanCount >= 9 && getWateringCanCount <= 12) {
+  } else if (getWateringCanCount >= 3 && getWateringCanCount <= 4) {
     growth.src = phase4;
     console.log(growth.src);
-  } else if (getWateringCanCount >= 12) {
+  } else if (getWateringCanCount >= 5) {
     growth.src = Object.keys(flowerKey)
     scoopImg.style.display = "block";
-    getWateringCanCount = 0;
   } else {
     growth.src = phase1;
   }
 }
 
-const wateringCanClick = () => {
+function wateringCanClick () {
+  if (wateringCanCount >= 5 && repottingFlg === true) {
+    wateringCanCount = 0
+    repottingFlg = false
+  }
   let timerId = null;
   showWateringCan();
   wateringCanCount++;
   localStorage.setItem("wateringCanCount", wateringCanCount);
-  flowerGrowth();
+  // flowerGrowth();
 };
 
 // ジョウロを5秒だけ表示
@@ -99,6 +102,7 @@ function showWateringCan() {
   // alarm.style.display = "block"
   wateringCan.classList.add("active");
   timerId = setTimeout(closeWateringCan, 2000); // タイマーを開始
+  flowerGrowth();
 }
 
 function closeWateringCan() {
@@ -121,6 +125,10 @@ const scoop = document.querySelector(".scoop");
 const scoopImg = document.querySelector(".scoop-img");
 
 let repottingFlg = false;
+// fs -> フラワーストレージ
+let fs = []
+fs = JSON.parse(localStorage.getItem("flowers"))
+console.log(fs);
 function repotting() {
   repottingFlg = true;
   localStorage.setItem("ripottingFlg", repottingFlg)
@@ -128,6 +136,7 @@ function repotting() {
   localStorage.setItem("wateringCanCount", 0)
   growth.src = phase1;
   scoopImg.style = "box-shadow: none";
+  localStorage.setItem("flowers", JSON.stringify(fs))
 }
 
 scoop.addEventListener("click", repotting);
