@@ -81,7 +81,7 @@
 }
 
 .title {
-  color: black;
+  color: var(--navyblue);
   font-weight: bold;
 }
 
